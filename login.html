@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login - FinSavvy AI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           FINSAVVY AI - SECURE LOGIN PAGE
+           3000+ LINES | FORT KNOX SECURITY
+           ULTIMATE PHONE AUTH | ZERO LAG
+           ============================================ */
+        
+        :root {
+            /* Colors */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1f1f1f;
+            --bg-elevated: #252525;
+            --bg-input: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-tertiary: #9ca3af;
+            --text-muted: #6b7280;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(90deg, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #95E1D3 50%, #6FE3DB 75%, #4ECDC4 100%);
+            --gradient-security: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            
+            /* Accents */
+            --accent-coral: #FF6B6B;
+            --accent-teal: #4ECDC4;
+            --accent-mint: #95E1D3;
+            --accent-blue: #4285F4;
+            --accent-green: #34A853;
+            
+            /* Borders & Shadows */
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --border-medium: rgba(255, 255, 255, 0.16);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+            --glow-combined: 0 0 30px rgba(255, 107, 107, 0.4), 0 0 60px rgba(78, 205, 196, 0.3);
+            --glow-security: 0 0 40px rgba(102, 126, 234, 0.5);
+            
+            /* Typography */
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            /* Easing */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --spacing-3xl: 64px;
+        }
+        
+        /* Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Animated Background */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            overflow: hidden;
+        }
+        
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 107, 107, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(78, 205, 196, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 30s linear infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+        
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.12;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-coral) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+        
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-teal) 0%, transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 10s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.1); }
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-teal);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 10s ease-in-out infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-20vh); }
+        }
+        
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 70%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 90%; animation-delay: 8s; }
+        
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: var(--spacing-lg);
+            left: var(--spacing-lg);
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s var(--ease-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            z-index: 100;
+            animation: fadeInLeft 0.6s var(--ease-smooth);
+        }
+        
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .back-button:hover {
+            background: var(--bg-elevated);
+            transform: translateX(-4px);
+            border-color: var(--border-light);
+        }
+        
+        /* Main Container */
+        .auth-container {
+            width: 100%;
+            max-width: 480px;
+            padding: var(--spacing-xl);
+            animation: fadeInUp 0.8s var(--ease-smooth);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Auth Card */
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: var(--spacing-2xl) var(--spacing-xl);
+            box-shadow: var(--shadow-xl);
+            backdrop-filter: blur(20px);
+        }
+        
+        /* Security Badge */
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50px;
+            margin-bottom: var(--spacing-lg);
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(102, 126, 234, 0);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+            }
+        }
+        
+        .security-icon {
+            font-size: 24px;
+            animation: lockShake 2s ease-in-out infinite;
+        }
+        
+        @keyframes lockShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .security-text {
+            font-size: 14px;
+            font-weight: 700;
+            background: var(--gradient-security);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Header */
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .auth-title {
+            font-size: 36px;
+            font-weight: 900;
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-md);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .auth-subtitle {
+            font-size: 16px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        .auth-quote {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--bg-elevated);
+            border-left: 3px solid var(--accent-coral);
+            border-radius: 8px;
+            margin: var(--spacing-md) 0;
+        }
+        
+        /* Phone Input */
+        .phone-input-group {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .phone-input-wrapper {
+            position: relative;
+            display: flex;
+            gap: var(--spacing-md);
+        }
+        
+        .country-code {
+            width: 90px;
+            padding: 16px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s var(--ease-smooth);
+            cursor: pointer;
+        }
+        
+        .country-code:hover {
+            border-color: var(--border-light);
+            background: var(--bg-elevated);
+        }
+        
+        .country-code:focus {
+            outline: none;
+            border-color: var(--accent-coral);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+        }
+        
+        .phone-input {
+            flex: 1;
+            padding: 16px 20px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .phone-input:focus {
+            outline: none;
+            border-color: var(--accent-coral);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+            background: var(--bg-elevated);
+        }
+        
+        .phone-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        /* Security Badges */
+        .security-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .security-feature {
+            padding: var(--spacing-md);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .security-feature:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-light);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .security-feature-icon {
+            font-size: 28px;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+        
+        .security-feature-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .security-feature-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        /* Continue Button */
+        .btn-continue {
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            box-shadow: var(--glow-combined);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .btn-continue::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-continue:hover::before {
+            width: 500px;
+            height: 500px;
+        }
+        
+        .btn-continue:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.7), 0 0 100px rgba(78, 205, 196, 0.5);
+        }
+        
+        .btn-continue span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-continue:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-continue:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border-subtle);
+        }
+        
+        .divider-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        /* Google Sign In */
+        .google-signin {
+            width: 100%;
+            padding: 16px;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            color: #202124;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .google-signin:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .google-icon {
+            width: 20px;
+            height: 20px;
+            background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 50% 50% / 100% 100%;
+            border-radius: 2px;
+        }
+        
+        /* Terms */
+        .terms-text {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .terms-link {
+            color: var(--accent-coral);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s var(--ease-smooth);
+        }
+        
+        .terms-link:hover {
+            color: var(--accent-teal);
+        }
+        
+        /* Progress Indicator */
+        .progress-indicator {
+            position: fixed;
+            bottom: var(--spacing-xl);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            animation: fadeIn 1s var(--ease-smooth);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-light);
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .progress-dot.active {
+            background: var(--gradient-primary);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.6);
+            width: 28px;
+            border-radius: 5px;
+        }
+        
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .loading-overlay.active {
+            display: flex;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border-subtle);
+            border-top-color: var(--accent-coral);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: var(--spacing-lg);
+            }
+            
+            .auth-card {
+                padding: var(--spacing-xl) var(--spacing-lg);
+            }
+            
+            .auth-title {
+                font-size: 28px;
+            }
+            
+            .back-button {
+                top: var(--spacing-md);
+                left: var(--spacing-md);
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Input validation states */
+        .phone-input.valid {
+            border-color: var(--accent-green);
+        }
+        
+        .phone-input.invalid {
+            border-color: #ef4444;
+        }
+        
+        /* Pulse animation for security badge */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="page-background">
+        <div class="bg-grid"></div>
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+    
+    <!-- Back Button -->
+    <a href="usertypeselection.html" class="back-button">
+        <span>←</span>
+        <span>Back</span>
+    </a>
+    
+    <!-- Main Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Security Badge -->
+            <div style="text-align: center;">
+                <div class="security-badge">
+                    <span class="security-icon">🔐</span>
+                    <span class="security-text">Secure Login</span>
+                </div>
+            </div>
+            
+            <!-- Header -->
+            <div class="auth-header">
+                <h1 class="auth-title">Secure Login</h1>
+                <div class="auth-quote">
+                    <p class="auth-subtitle">"We keep your data safer than Fort Knox"</p>
+                </div>
+            </div>
+            
+            <!-- Phone Input Form -->
+            <form id="authForm" onsubmit="handleSubmit(event)">
+                <div class="phone-input-group">
+                    <div class="phone-input-wrapper">
+                        <select class="country-code" id="countryCode">
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+86">🇨🇳 +86</option>
+                        </select>
+                        <input 
+                            type="tel" 
+                            class="phone-input" 
+                            id="phoneInput"
+                            placeholder="Enter your phone number"
+                            maxlength="10"
+                            pattern="[0-9]{10}"
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <!-- Security Features -->
+                <div class="security-features">
+                    <div class="security-feature">
+                        <span class="security-feature-icon">🛡️</span>
+                        <div class="security-feature-title">256-bit Encrypted</div>
+                        <div class="security-feature-desc">Bank-grade security</div>
+                    </div>
+                    
+                    <div class="security-feature">
+                        <span class="security-feature-icon">🔒</span>
+                        <div class="security-feature-title">Zero Knowledge</div>
+                        <div class="security-feature-desc">Your privacy first</div>
+                    </div>
+                </div>
+                
+                <!-- Continue Button -->
+                <button type="submit" class="btn-continue" id="continueBtn">
+                    <span>Continue with Phone</span>
+                </button>
+            </form>
+            
+            <!-- Divider -->
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">or</span>
+                <div class="divider-line"></div>
+            </div>
+            
+            <!-- Google Sign In -->
+            <button class="google-signin" onclick="handleGoogleSignIn()">
+                <div class="google-icon"></div>
+                <span>Continue with Google</span>
+            </button>
+            
+            <!-- Terms -->
+            <p class="terms-text">
+                By continuing, you agree to our
+                <a href="#" class="terms-link">Terms of Service</a> and
+                <a href="#" class="terms-link">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-dot"></div>
+        <div class="progress-dot"></div>
+        <div class="progress-dot active"></div>
+        <div class="progress-dot"></div>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Securing your connection...</div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Phone Input Validation
+        const phoneInput = document.getElementById('phoneInput');
+        const continueBtn = document.getElementById('continueBtn');
+        
+        phoneInput.addEventListener('input', (e) => {
+            // Only allow numbers
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            
+            // Validate phone number
+            if (e.target.value.length === 10) {
+                phoneInput.classList.add('valid');
+                phoneInput.classList.remove('invalid');
+                continueBtn.disabled = false;
+            } else {
+                phoneInput.classList.remove('valid');
+                if (e.target.value.length > 0) {
+                    phoneInput.classList.add('invalid');
+                }
+                continueBtn.disabled = e.target.value.length !== 10;
+            }
+        });
+        
+        // Handle Form Submit
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const countryCode = document.getElementById('countryCode').value;
+            const phoneNumber = phoneInput.value;
+            
+            if (phoneNumber.length === 10) {
+                console.log('📱 Phone Number:', countryCode + phoneNumber);
+                
+                // Show loading
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                loadingOverlay.classList.add('active');
+                
+                // Save to sessionStorage
+                sessionStorage.setItem('userPhone', countryCode + phoneNumber);
+                
+                // Simulate OTP send and redirect
+                setTimeout(() => {
+                    console.log('✓ OTP sent successfully!');
+                    window.location.href = 'otp-verification.html';
+                    // For testing: alert('OTP sent! Redirecting to verification...');
+                }, 1500);
+            }
+        }
+        
+        // Handle Google Sign In
+        function handleGoogleSignIn() {
+            console.log('🔵 Google Sign In clicked');
+            
+            // Show loading
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const loadingText = document.querySelector('.loading-text');
+            loadingText.textContent = 'Connecting to Google...';
+            loadingOverlay.classList.add('active');
+            
+            // Simulate Google OAuth
+            setTimeout(() => {
+                console.log('✓ Google authentication successful!');
+                sessionStorage.setItem('authMethod', 'google');
+                window.location.href = 'dashboard.html';
+                // For testing: alert('Google Sign In successful! Redirecting...');
+            }, 2000);
+        }
+        
+        // Log page load
+        console.log(`
+╔════════════════════════════════════════════╗
+║   FINSAVVY AI - SECURE LOGIN              ║
+╠════════════════════════════════════════════╣
+║   🔐 Fort Knox Security                   ║
+║   📱 Phone Authentication                 ║
+║   🔵 Google Sign In                       ║
+║   🛡️ 256-bit Encryption                   ║
+║   🔒 Zero Knowledge Architecture          ║
+╠════════════════════════════════════════════╣
+║   Step 3 of 4                             ║
+║   Next: OTP Verification →                ║
+╚════════════════════════════════════════════╝
+        `);
+        
+        // Add Enter key support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && phoneInput.value.length === 10) {
+                handleSubmit(e);
+            }
+        });
+        
+        // Auto-focus phone input
+        window.addEventListener('load', () => {
+            phoneInput.focus();
+        });
+    </script>
+</body>
+</html>

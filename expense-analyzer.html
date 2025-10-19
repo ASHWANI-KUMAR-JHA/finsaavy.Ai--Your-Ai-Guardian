@@ -1,0 +1,3622 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="nexus">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Expense Analyzer - FinSavvy AI</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        /* ============================================
+           FINSAVVY AI - EMOTIONAL EXPENSE ANALYZER
+           PART 1/5: GLOBAL CSS & NAVIGATION
+           5000+ LINES | NEXUS THEME | GIG WORKERS
+           ============================================ */
+        
+        /* ============================================
+           CSS VARIABLES - THEME SYSTEM
+           ============================================ */
+        :root {
+            /* Background Colors */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #1f1f1f;
+            --bg-elevated: #252525;
+            --bg-hover: #2a2a2a;
+            --bg-glass: rgba(31, 31, 31, 0.8);
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-tertiary: #9ca3af;
+            --text-muted: #6b7280;
+            --text-dim: #4b5563;
+            
+            /* NEXUS Theme - Coral → Teal */
+            --gradient-primary: linear-gradient(90deg, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #95E1D3 50%, #6FE3DB 75%, #4ECDC4 100%);
+            --gradient-radial: radial-gradient(circle, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-hover: linear-gradient(90deg, #FF8E8E 0%, #6FE3DB 100%);
+            --gradient-vertical: linear-gradient(180deg, #FF6B6B 0%, #4ECDC4 100%);
+            --accent-primary: #FF6B6B;
+            --accent-secondary: #4ECDC4;
+            --accent-tertiary: #95E1D3;
+            
+            /* Emotional State Colors */
+            --emotion-stress: #ef4444;
+            --emotion-anxiety: #f59e0b;
+            --emotion-neutral: #3b82f6;
+            --emotion-happy: #10b981;
+            --emotion-excited: #8b5cf6;
+            
+            /* Status Colors */
+            --success: #10b981;
+            --success-light: #34d399;
+            --warning: #f59e0b;
+            --warning-light: #fbbf24;
+            --error: #ef4444;
+            --error-light: #f87171;
+            --info: #3b82f6;
+            --info-light: #60a5fa;
+            
+            /* Shadows & Glows */
+            --shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.25);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+            --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.7);
+            --glow-primary: 0 0 40px rgba(255, 107, 107, 0.5);
+            --glow-secondary: 0 0 40px rgba(78, 205, 196, 0.5);
+            --glow-combined: 0 0 30px rgba(255, 107, 107, 0.4), 0 0 60px rgba(78, 205, 196, 0.3);
+            
+            /* Border Colors */
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --border-medium: rgba(255, 255, 255, 0.16);
+            --border-strong: rgba(255, 255, 255, 0.24);
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-cursive: 'Dancing Script', cursive;
+            --font-body: 'Poppins', sans-serif;
+            
+            /* Font Sizes */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            
+            /* Spacing Scale */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --spacing-3xl: 64px;
+            --spacing-4xl: 96px;
+            
+            /* Animation Durations */
+            --duration-instant: 100ms;
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+            --duration-slower: 800ms;
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 18px;
+            --radius-2xl: 24px;
+            --radius-3xl: 32px;
+            --radius-full: 9999px;
+            
+            /* Easing Functions */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            
+            /* Z-Index Layers */
+            --z-base: 0;
+            --z-dropdown: 100;
+            --z-sticky: 200;
+            --z-fixed: 300;
+            --z-modal: 500;
+            --z-popover: 600;
+            --z-tooltip: 700;
+            --z-notification: 800;
+            --z-max: 9999;
+        }
+        
+        /* ============================================
+           AURORA Theme - Purple → Blue
+           ============================================ */
+        [data-theme="aurora"] {
+            --gradient-primary: linear-gradient(90deg, #A78BFA 0%, #60A5FA 100%);
+            --gradient-secondary: linear-gradient(135deg, #A78BFA 0%, #C4B5FD 25%, #93C5FD 50%, #7DD3FC 75%, #60A5FA 100%);
+            --accent-primary: #A78BFA;
+            --accent-secondary: #60A5FA;
+            --accent-tertiary: #93C5FD;
+            --glow-primary: 0 0 40px rgba(167, 139, 250, 0.5);
+            --glow-secondary: 0 0 40px rgba(96, 165, 250, 0.5);
+        }
+        
+        /* ============================================
+           SUNSET Theme - Orange → Pink
+           ============================================ */
+        [data-theme="sunset"] {
+            --gradient-primary: linear-gradient(90deg, #FB923C 0%, #F472B6 100%);
+            --gradient-secondary: linear-gradient(135deg, #FB923C 0%, #FDBA74 25%, #FCA5A5 50%, #F9A8D4 75%, #F472B6 100%);
+            --accent-primary: #FB923C;
+            --accent-secondary: #F472B6;
+            --accent-tertiary: #FCA5A5;
+            --glow-primary: 0 0 40px rgba(251, 146, 60, 0.5);
+            --glow-secondary: 0 0 40px rgba(244, 114, 182, 0.5);
+        }
+        
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.5s var(--ease-smooth);
+        }
+        
+        /* ============================================
+           ANIMATED BACKGROUND
+           ============================================ */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            overflow: hidden;
+        }
+        
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border-subtle) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 30s linear infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+        
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            top: -300px;
+            left: -300px;
+        }
+        
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+            bottom: -250px;
+            right: -250px;
+            animation-delay: 5s;
+        }
+        
+        .orb-3 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(80px, -80px) scale(1.2); }
+            66% { transform: translate(-50px, 70px) scale(0.9); }
+        }
+        
+        /* ============================================
+           SCROLLBAR STYLING
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            border: 2px solid var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gradient-hover);
+        }
+        
+        /* ============================================
+           MAIN HEADER / NAVBAR
+           ============================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--spacing-xl);
+            z-index: var(--z-fixed);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .main-header.scrolled {
+            height: 60px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .header-left,
+        .header-center,
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            flex: 1;
+        }
+        
+        .header-center {
+            justify-content: center;
+        }
+        
+        .header-right {
+            justify-content: flex-end;
+        }
+        
+        /* ============================================
+           BACK BUTTON
+           ============================================ */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-smooth);
+            z-index: -1;
+        }
+        
+        .btn-back:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(-4px);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .btn-back:hover::before {
+            opacity: 0.15;
+        }
+        
+        .btn-back-icon {
+            font-size: 18px;
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .btn-back:hover .btn-back-icon {
+            animation: arrowBounce 0.6s ease-in-out infinite;
+        }
+        
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateX(-4px); }
+            50% { transform: translateX(-8px); }
+        }
+        
+        /* ============================================
+           LOGO
+           ============================================ */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+        }
+        
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .logo-text {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            font-family: var(--font-display);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* ============================================
+           PAGE TITLE
+           ============================================ */
+        .page-title-header {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            position: relative;
+        }
+        
+        .page-title-header::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+        
+        /* ============================================
+           THEME SWITCHER
+           ============================================ */
+        .theme-switcher {
+            display: flex;
+            gap: var(--spacing-xs);
+            background: var(--bg-card);
+            padding: 4px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+        
+        .theme-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+        }
+        
+        .theme-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
+            transition: border-color var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .theme-btn.active::before {
+            border-color: var(--text-primary);
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .theme-btn-nexus {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+        }
+        
+        .theme-btn-aurora {
+            background: linear-gradient(135deg, #A78BFA, #60A5FA);
+        }
+        
+        .theme-btn-sunset {
+            background: linear-gradient(135deg, #FB923C, #F472B6);
+        }
+        
+        /* ============================================
+           NOTIFICATION ICON
+           ============================================ */
+        .notification-wrapper {
+            position: relative;
+        }
+        
+        .notification-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 20px;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .notification-icon:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            transform: scale(1.05);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            background: var(--error);
+            border: 2px solid var(--bg-primary);
+            border-radius: var(--radius-full);
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulseBadge 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* ============================================
+           PROFILE DROPDOWN
+           ============================================ */
+        .profile-container {
+            position: relative;
+        }
+        
+        .profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 6px 12px 6px 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .profile-trigger:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            transform: translateY(-2px);
+        }
+        
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+        
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            max-width: 120px;
+        }
+        
+        .profile-name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .profile-role {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .profile-container.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: 280px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            z-index: var(--z-dropdown);
+            overflow: hidden;
+        }
+        
+        .profile-container.open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-header {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .dropdown-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .dropdown-user-info {
+            flex: 1;
+        }
+        
+        .dropdown-user-name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .dropdown-user-email {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .dropdown-section {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            position: relative;
+        }
+        
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transform: scaleY(0);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .dropdown-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            padding-left: calc(var(--spacing-lg) + 8px);
+        }
+        
+        .dropdown-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .dropdown-item-icon {
+            font-size: 18px;
+            width: 24px;
+        }
+        
+        .dropdown-item.logout {
+            color: var(--error);
+        }
+        
+        .dropdown-item.logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        /* ============================================
+           MAIN CONTENT CONTAINER
+           ============================================ */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+            padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-2xl);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ============================================
+           MOBILE RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .main-header {
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .logo-text {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 0 var(--spacing-md);
+                height: 60px;
+            }
+            
+            .page-title-header {
+                font-size: var(--text-base);
+            }
+            
+            .profile-info {
+                display: none;
+            }
+            
+            .dropdown-arrow {
+                display: none;
+            }
+            
+            .theme-switcher {
+                display: none;
+            }
+            
+            .main-content {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .btn-back-text {
+                display: none;
+            }
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="page-background">
+        <div class="bg-grid"></div>
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header" id="mainHeader">
+        <!-- Left Section -->
+        <div class="header-left">
+            <button class="btn-back" id="backButton">
+                <span class="btn-back-icon">←</span>
+                <span class="btn-back-text">Back</span>
+            </button>
+            
+            <div class="logo-container" onclick="window.location.href='dashboard.html'">
+                <div class="logo-icon">💰</div>
+                <div class="logo-text">FinSavvy<span style="color: var(--text-tertiary); font-size: var(--text-xs);">.AI</span></div>
+            </div>
+        </div>
+        
+        <!-- Center Section -->
+        <div class="header-center">
+            <h1 class="page-title-header">🧠 Emotional Expense Analyzer</h1>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="header-right">
+            <!-- Theme Switcher -->
+            <div class="theme-switcher">
+                <button class="theme-btn theme-btn-nexus active" data-theme="nexus"></button>
+                <button class="theme-btn theme-btn-aurora" data-theme="aurora"></button>
+                <button class="theme-btn theme-btn-sunset" data-theme="sunset"></button>
+            </div>
+            
+            <!-- Notification Icon -->
+            <div class="notification-wrapper">
+                <button class="notification-icon" id="notificationButton">
+                    <span>🔔</span>
+                    <span class="notification-badge">5</span>
+                </button>
+            </div>
+            
+            
+            <!-- Profile Dropdown -->
+            <div class="profile-container" id="profileContainer">
+                <button class="profile-trigger" id="profileTrigger">
+                    <div class="profile-avatar">A</div>
+                    <div class="profile-info">
+                        <div class="profile-name">Ankit</div>
+                        <div class="profile-role">Gig Worker</div>
+                    </div>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-header">
+                        <div class="dropdown-avatar">A</div>
+                        <div class="dropdown-user-info">
+                            <div class="dropdown-user-name">Ankit Kumar</div>
+                            <div class="dropdown-user-email">ankit@finsavvy.ai</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="dashboard.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">🏠</span>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="profile.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">👤</span>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="income-tracker.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">💵</span>
+                            <span>Income Tracker</span>
+                        </a>
+                        <a href="emotional-expense.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">🧠</span>
+                            <span>Emotional Analyzer</span>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                        <a href="help.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">❓</span>
+                            <span>Help</span>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="#" class="dropdown-item logout" id="logoutButton">
+                            <span class="dropdown-item-icon">🚪</span>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Content will be added in next parts -->
+    </main>
+    <style>
+        /* ============================================
+           PART 2/5: EMOTIONAL DASHBOARD & HERO
+           SPENDING PATTERNS | TRIGGER DETECTION
+           WEEKLY HEATMAP | EMOTION TRACKING
+           ============================================ */
+        
+        /* ============================================
+           HERO SECTION WITH EMOTIONAL STATUS
+           ============================================ */
+        .hero-section {
+            max-width: 1400px;
+            margin: 0 auto var(--spacing-3xl);
+        }
+        
+        .emotional-status-banner {
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .emotional-status-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .emotional-status-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+            opacity: 0.08;
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.08; }
+            50% { transform: scale(1.2); opacity: 0.12; }
+        }
+        
+        .status-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .status-emoji {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            box-shadow: var(--shadow-lg), var(--glow-primary);
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatEmoji {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .status-info {
+            flex: 1;
+        }
+        
+        .status-title {
+            font-size: var(--text-3xl);
+            font-weight: 800;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .status-subtitle {
+            font-size: var(--text-base);
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .status-metrics {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+        
+        .status-metric {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-metric-value {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .status-metric-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        
+        .status-cta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .cta-button {
+            padding: 12px 24px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            font-family: var(--font-display);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg), var(--glow-primary);
+        }
+        
+        .cta-button.secondary {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+        }
+        
+        .cta-button.secondary:hover {
+            border-color: var(--accent-primary);
+            background: var(--bg-hover);
+        }
+        
+        /* ============================================
+           EMOTIONAL SCORE GAUGE
+           ============================================ */
+        .emotional-score-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .score-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .score-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+        }
+        
+        .score-period {
+            padding: 6px 12px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .gauge-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto var(--spacing-xl);
+        }
+        
+        .gauge-svg {
+            width: 100%;
+            height: auto;
+        }
+        
+        .gauge-background {
+            fill: none;
+            stroke: var(--bg-elevated);
+            stroke-width: 20;
+        }
+        
+        .gauge-fill {
+            fill: none;
+            stroke: url(#gaugeGradient);
+            stroke-width: 20;
+            stroke-linecap: round;
+            transition: stroke-dasharray 1s var(--ease-smooth);
+        }
+        
+        .gauge-center {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+        }
+        
+        .gauge-score {
+            font-size: var(--text-6xl);
+            font-weight: 900;
+            font-family: var(--font-display);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        
+        .gauge-label {
+            font-size: var(--text-base);
+            color: var(--text-tertiary);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .score-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .score-item-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .score-item-info {
+            flex: 1;
+        }
+        
+        .score-item-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .score-item-value {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2px;
+        }
+        
+        /* ============================================
+           WEEKLY SPENDING HEATMAP
+           ============================================ */
+        .heatmap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .heatmap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .heatmap-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .heatmap-legend {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+        
+        .legend-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+        
+        .legend-gradient {
+            width: 150px;
+            height: 20px;
+            background: linear-gradient(90deg, var(--success) 0%, var(--warning) 50%, var(--error) 100%);
+            border-radius: var(--radius-sm);
+        }
+        
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: auto repeat(7, 1fr);
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .heatmap-day-label {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: var(--spacing-sm);
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+        
+        .heatmap-cell {
+            aspect-ratio: 1;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .heatmap-cell:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .heatmap-cell.low {
+            background: rgba(16, 185, 129, 0.3);
+            border-color: var(--success);
+        }
+        
+        .heatmap-cell.medium {
+            background: rgba(245, 158, 11, 0.3);
+            border-color: var(--warning);
+        }
+        
+        .heatmap-cell.high {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: var(--error);
+        }
+        
+        .heatmap-cell.emotional {
+            animation: emotionalPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes emotionalPulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--error); }
+            50% { box-shadow: 0 0 0 8px transparent; }
+        }
+        
+        .heatmap-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            white-space: nowrap;
+            font-size: var(--text-xs);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--duration-fast) var(--ease-smooth);
+            z-index: 100;
+        }
+        
+        .heatmap-cell:hover .heatmap-tooltip {
+            opacity: 1;
+        }
+        
+        .tooltip-date {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .tooltip-amount {
+            color: var(--text-tertiary);
+        }
+        
+        .tooltip-emoji {
+            margin-left: 4px;
+        }
+        
+        /* ============================================
+           EMOTIONAL TRIGGERS SECTION
+           ============================================ */
+        .triggers-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .triggers-header {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .triggers-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .triggers-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .triggers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .trigger-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trigger-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transform: scaleY(0);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .trigger-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .trigger-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .trigger-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .trigger-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .trigger-badge {
+            padding: 4px 10px;
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--error-light);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .trigger-badge.medium {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning-light);
+        }
+        
+        .trigger-badge.low {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success-light);
+        }
+        
+        .trigger-name {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .trigger-description {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+            line-height: 1.5;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .trigger-stats {
+            display: flex;
+            justify-content: space-between;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .trigger-stat {
+            text-align: center;
+        }
+        
+        .trigger-stat-value {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            display: block;
+        }
+        
+        .trigger-stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        
+        /* ============================================
+           SPENDING PATTERN TIMELINE
+           ============================================ */
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .timeline-header {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .timeline-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding-left: var(--spacing-xl);
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-light);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--spacing-xl);
+            padding-left: var(--spacing-xl);
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -28px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--gradient-primary);
+            border: 3px solid var(--bg-card);
+            border-radius: var(--radius-full);
+            box-shadow: 0 0 0 4px var(--bg-elevated);
+        }
+        
+        .timeline-dot.emotional {
+            animation: timelinePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes timelinePulse {
+            0%, 100% { box-shadow: 0 0 0 4px var(--bg-elevated), 0 0 0 0 var(--accent-primary); }
+            50% { box-shadow: 0 0 0 4px var(--bg-elevated), 0 0 0 8px transparent; }
+        }
+        
+        .timeline-content {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+        }
+        
+        .timeline-time {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .timeline-event {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .timeline-amount {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .timeline-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: var(--bg-card);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        /* ============================================
+           MOBILE RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .status-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .status-emoji {
+                margin: 0 auto;
+            }
+            
+            .status-metrics {
+                justify-content: center;
+            }
+            
+            .status-cta {
+                align-items: center;
+            }
+            
+            .triggers-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .emotional-status-banner {
+                padding: var(--spacing-lg);
+            }
+            
+            .status-emoji {
+                width: 80px;
+                height: 80px;
+                font-size: 48px;
+            }
+            
+            .status-title {
+                font-size: var(--text-2xl);
+            }
+            
+            .status-metrics {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .heatmap-grid {
+                grid-template-columns: auto repeat(7, 1fr);
+                gap: 4px;
+            }
+            
+            .heatmap-day-label {
+                font-size: 10px;
+            }
+            
+            .heatmap-cell {
+                font-size: 10px;
+            }
+            
+            .triggers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .score-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .heatmap-legend {
+                flex-direction: column;
+            }
+            
+            .legend-gradient {
+                width: 100%;
+            }
+        }
+    </style>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <!-- Emotional Status Banner -->
+            <div class="emotional-status-banner">
+                <div class="status-content">
+                    <div class="status-emoji" id="emotionalEmoji">😰</div>
+                    <div class="status-info">
+                        <h2 class="status-title">Stress Spending Detected This Week</h2>
+                        <p class="status-subtitle">
+                            You spent ₹2,400 more than usual when income dropped. Let's understand your emotional triggers and build healthier habits together.
+                        </p>
+                        <div class="status-metrics">
+                            <div class="status-metric">
+                                <span class="status-metric-value">₹6,800</span>
+                                <span class="status-metric-label">Emotional Spending</span>
+                            </div>
+                            <div class="status-metric">
+                                <span class="status-metric-value">5 times</span>
+                                <span class="status-metric-label">Trigger Events</span>
+                            </div>
+                            <div class="status-metric">
+                                <span class="status-metric-value">3 days</span>
+                                <span class="status-metric-label">No-Impulse Streak</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-cta">
+                        <button class="cta-button" onclick="viewRecommendations()">
+                            💡 View Insights
+                        </button>
+                        <button class="cta-button secondary" onclick="trackMood()">
+                            📝 Log Today's Mood
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Emotional Control Score -->
+            <div class="emotional-score-card">
+                <div class="score-header">
+                    <h3 class="score-title">📊 Emotional Control Score</h3>
+                    <span class="score-period">This Week</span>
+                </div>
+                
+                <div class="gauge-container">
+                    <svg class="gauge-svg" viewBox="0 0 200 120">
+                        <defs>
+                            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4ECDC4;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path class="gauge-background" d="M20,100 A80,80 0 0,1 180,100" />
+                        <path class="gauge-fill" id="gaugeFill" d="M20,100 A80,80 0 0,1 180,100" stroke-dasharray="0 251.2" />
+                    </svg>
+                    <div class="gauge-center">
+                        <div class="gauge-score" id="gaugeScore">65</div>
+                        <div class="gauge-label">out of 100</div>
+                    </div>
+                </div>
+                
+                <div class="score-breakdown">
+                    <div class="score-item">
+                        <div class="score-item-icon">🎯</div>
+                        <div class="score-item-info">
+                            <div class="score-item-label">Impulse Control</div>
+                            <div class="score-item-value">72/100</div>
+                        </div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-item-icon">💪</div>
+                        <div class="score-item-info">
+                            <div class="score-item-label">Budget Discipline</div>
+                            <div class="score-item-value">58/100</div>
+                        </div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-item-icon">🧘</div>
+                        <div class="score-item-info">
+                            <div class="score-item-label">Stress Management</div>
+                            <div class="score-item-value">65/100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weekly Spending Heatmap -->
+            <div class="heatmap-card">
+                <div class="heatmap-header">
+                    <h3 class="heatmap-title">
+                        <span>🔥</span>
+                        Weekly Spending Heatmap
+                    </h3>
+                    <div class="heatmap-legend">
+                        <span class="legend-label">Low</span>
+                        <div class="legend-gradient"></div>
+                        <span class="legend-label">High</span>
+                    </div>
+                </div>
+                
+                <div class="heatmap-grid" id="heatmapGrid">
+                    <!-- Day labels -->
+                    <div></div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Mon</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Tue</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Wed</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Thu</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Fri</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Sat</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Sun</div>
+                    
+                    <!-- Week 1 -->
+                    <div class="heatmap-day-label">Week 1</div>
+                    <div class="heatmap-cell low">₹800
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Mon, Oct 7</div>
+                            <div class="tooltip-amount">Spent: ₹800 <span class="tooltip-emoji">😊</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell medium">₹1.5K
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Tue, Oct 8</div>
+                            <div class="tooltip-amount">Spent: ₹1,500 <span class="tooltip-emoji">😐</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell high emotional">₹2.8K
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Wed, Oct 9</div>
+                            <div class="tooltip-amount">Spent: ₹2,800 <span class="tooltip-emoji">😰 Stress</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell low">₹900
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Thu, Oct 10</div>
+                            <div class="tooltip-amount">Spent: ₹900 <span class="tooltip-emoji">😊</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell medium">₹1.6K
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Fri, Oct 11</div>
+                            <div class="tooltip-amount">Spent: ₹1,600 <span class="tooltip-emoji">😐</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell high emotional">₹2.4K
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Sat, Oct 12</div>
+                            <div class="tooltip-amount">Spent: ₹2,400 <span class="tooltip-emoji">😰 Impulse</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell low">₹700
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Sun, Oct 13</div>
+                            <div class="tooltip-amount">Spent: ₹700 <span class="tooltip-emoji">😊</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Week 2 -->
+                    <div class="heatmap-day-label">Week 2</div>
+                    <div class="heatmap-cell medium">₹1.4K
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Mon, Oct 14</div>
+                            <div class="tooltip-amount">Spent: ₹1,400 <span class="tooltip-emoji">😐</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell low">₹850
+                        <div class="heatmap-tooltip">
+                            <div class="tooltip-date">Tue, Oct 15</div>
+                            <div class="tooltip-amount">Spent: ₹850 <span class="tooltip-emoji">😊 Today</span></div>
+                        </div>
+                    </div>
+                    <div class="heatmap-cell" style="background: var(--bg-elevated); border-style: dashed;"></div>
+                    <div class="heatmap-cell" style="background: var(--bg-elevated); border-style: dashed;"></div>
+                    <div class="heatmap-cell" style="background: var(--bg-elevated); border-style: dashed;"></div>
+                    <div class="heatmap-cell" style="background: var(--bg-elevated); border-style: dashed;"></div>
+                    <div class="heatmap-cell" style="background: var(--bg-elevated); border-style: dashed;"></div>
+                </div>
+            </div>
+            
+            <!-- Emotional Triggers Detected -->
+            <div class="triggers-card">
+                <div class="triggers-header">
+                    <h3 class="triggers-title">
+                        <span>⚡</span>
+                        Your Emotional Triggers
+                    </h3>
+                    <p class="triggers-subtitle">
+                        These patterns trigger emotional spending. Awareness is the first step to control.
+                    </p>
+                </div>
+                
+                <div class="triggers-grid">
+                    <div class="trigger-item">
+                        <div class="trigger-header">
+                            <div class="trigger-icon">🍕</div>
+                            <div class="trigger-badge">High Risk</div>
+                        </div>
+                        <h4 class="trigger-name">Stress Eating</h4>
+                        <p class="trigger-description">
+                            You order food delivery 3x more when daily income drops below ₹800.
+                        </p>
+                        <div class="trigger-stats">
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">₹3,200</span>
+                                <span class="trigger-stat-label">This Week</span>
+                            </div>
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">8 times</span>
+                                <span class="trigger-stat-label">Occurrences</span>
+                            </div>
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">Wed, Sat</span>
+                                <span class="trigger-stat-label">Peak Days</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trigger-item">
+                        <div class="trigger-header">
+                            <div class="trigger-icon">🛍️</div>
+                            <div class="trigger-badge medium">Medium Risk</div>
+                        </div>
+                        <h4 class="trigger-name">Retail Therapy</h4>
+                        <p class="trigger-description">
+                            Shopping spikes after tough weeks, trying to feel better through purchases.
+                        </p>
+                        <div class="trigger-stats">
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">₹1,800</span>
+                                <span class="trigger-stat-label">This Week</span>
+                            </div>
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">3 times</span>
+                                <span class="trigger-stat-label">Occurrences</span>
+                            </div>
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">Late PM</span>
+                                <span class="trigger-stat-label">Peak Time</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trigger-item">
+                        <div class="trigger-header">
+                            <div class="trigger-icon">🎉</div>
+                            <div class="trigger-badge low">Low Risk</div>
+                        </div>
+                        <h4 class="trigger-name">Celebration Splurge</h4>
+                        <p class="trigger-description">
+                            Big purchases after good earning days, rewarding yourself excessively.
+                        </p>
+                        <div class="trigger-stats">
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">₹1,200</span>
+                                <span class="trigger-stat-label">This Week</span>
+                            </div>
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">2 times</span>
+                                <span class="trigger-stat-label">Occurrences</span>
+                            </div>
+                            <div class="trigger-stat">
+                                <span class="trigger-stat-value">Evening</span>
+                                <span class="trigger-stat-label">Peak Time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Spending Timeline -->
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <h3 class="timeline-title">
+                        <span>⏱️</span>
+                        Recent Spending Timeline
+                    </h3>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot emotional"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">Today, 8:30 PM</div>
+                            <div class="timeline-event">Food Delivery Order</div>
+                            <div class="timeline-amount">₹450</div>
+                            <span class="timeline-category">😰 Stress Eating</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">Today, 2:15 PM</div>
+                            <div class="timeline-event">Grocery Shopping</div>
+                            <div class="timeline-amount">₹280</div>
+                            <span class="timeline-category">✅ Planned</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot emotional"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">Yesterday, 10:30 PM</div>
+                            <div class="timeline-event">Online Shopping</div>
+                            <div class="timeline-amount">₹1,200</div>
+                            <span class="timeline-category">🛍️ Retail Therapy</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot emotional"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">Yesterday, 7:00 PM</div>
+                            <div class="timeline-event">Restaurant Dinner</div>
+                            <div class="timeline-amount">₹850</div>
+                            <span class="timeline-category">😰 Comfort Spending</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">2 days ago, 6:00 PM</div>
+                            <div class="timeline-event">Fuel Refill</div>
+                            <div class="timeline-amount">₹500</div>
+                            <span class="timeline-category">✅ Necessary</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <style>
+        /* ============================================
+           PART 4/5: CHARTS & VISUALIZATIONS
+           EMOTION-SPENDING CORRELATION | WEEKLY TRENDS
+           CATEGORY BREAKDOWN | INTERACTIVE GRAPHS
+           ============================================ */
+        
+        /* ============================================
+           CHARTS SECTION
+           ============================================ */
+        .charts-section {
+            max-width: 1400px;
+            margin: 0 auto var(--spacing-3xl);
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            opacity: 0.7;
+        }
+        
+        .chart-header {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .chart-title {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .chart-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .chart-canvas-wrapper {
+            position: relative;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chart-canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .chart-legend {
+            margin-top: var(--spacing-xl);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .legend-label {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .legend-value {
+            font-size: var(--text-xs);
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        
+        /* ============================================
+           INSIGHTS SUMMARY
+           ============================================ */
+        .insights-summary {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .insights-header {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .insights-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .insight-box {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .insight-box:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-primary);
+        }
+        
+        .insight-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .insight-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .insight-value {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .insight-description {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+            line-height: 1.5;
+        }
+        
+        /* ============================================
+           MOBILE RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .chart-canvas-wrapper {
+                height: 300px;
+            }
+            
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+        <!-- Charts & Visualizations Section -->
+        <section class="charts-section">
+            <!-- Main Charts Grid -->
+            <div class="charts-grid">
+                <!-- Emotion vs Spending Correlation Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">
+                            <span>📈</span>
+                            Emotion vs Spending Pattern
+                        </h3>
+                        <p class="chart-subtitle">
+                            See how your mood affects spending over time
+                        </p>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="emotionSpendingChart" class="chart-canvas"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FF6B6B;"></div>
+                            <span class="legend-label">Daily Spending</span>
+                            <span class="legend-value">₹6,800</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #4ECDC4;"></div>
+                            <span class="legend-label">Mood Score</span>
+                            <span class="legend-value">6.5/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Breakdown Pie Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">
+                            <span>🍕</span>
+                            Emotional Spending by Category
+                        </h3>
+                        <p class="chart-subtitle">
+                            Where does your emotional spending go?
+                        </p>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="categoryBreakdownChart" class="chart-canvas"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FF6B6B;"></div>
+                            <span class="legend-label">Food Delivery</span>
+                            <span class="legend-value">₹3,200</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #4ECDC4;"></div>
+                            <span class="legend-label">Shopping</span>
+                            <span class="legend-value">₹1,800</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #95E1D3;"></div>
+                            <span class="legend-label">Entertainment</span>
+                            <span class="legend-value">₹1,200</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FFC93C;"></div>
+                            <span class="legend-label">Other</span>
+                            <span class="legend-value">₹600</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weekly Trend Chart (Full Width) -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <span>📊</span>
+                        Weekly Spending Trend
+                    </h3>
+                    <p class="chart-subtitle">
+                        Track your emotional vs normal spending day by day
+                    </p>
+                </div>
+                <div class="chart-canvas-wrapper">
+                    <canvas id="weeklyTrendChart" class="chart-canvas"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ef4444;"></div>
+                        <span class="legend-label">Emotional Spending</span>
+                        <span class="legend-value">₹6,800</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #10b981;"></div>
+                        <span class="legend-label">Normal Spending</span>
+                        <span class="legend-value">₹4,200</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #3b82f6;"></div>
+                        <span class="legend-label">Daily Budget</span>
+                        <span class="legend-value">₹1,000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Insights Summary -->
+            <div class="insights-summary">
+                <div class="insights-header">
+                    <h3 class="insights-title">
+                        <span>💡</span>
+                        Key Insights This Week
+                    </h3>
+                </div>
+                
+                <div class="insights-grid">
+                    <div class="insight-box">
+                        <div class="insight-icon">📉</div>
+                        <div class="insight-label">Emotional Spending</div>
+                        <div class="insight-value">62%</div>
+                        <div class="insight-description">
+                            Of your spending is triggered by emotions, not actual needs
+                        </div>
+                    </div>
+                    
+                    <div class="insight-box">
+                        <div class="insight-icon">⏰</div>
+                        <div class="insight-label">Peak Trigger Time</div>
+                        <div class="insight-value">8-10 PM</div>
+                        <div class="insight-description">
+                            Most emotional purchases happen late evening when tired
+                        </div>
+                    </div>
+                    
+                    <div class="insight-box">
+                        <div class="insight-icon">💰</div>
+                        <div class="insight-label">Potential Savings</div>
+                        <div class="insight-value">₹2,400</div>
+                        <div class="insight-description">
+                            You could save this much by controlling emotional triggers
+                        </div>
+                    </div>
+                    
+                    <div class="insight-box">
+                        <div class="insight-icon">📅</div>
+                        <div class="insight-label">Worst Day</div>
+                        <div class="insight-value">Wednesday</div>
+                        <div class="insight-description">
+                            Mid-week stress leads to highest emotional spending
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        /* ============================================
+           PART 4/5: CORE JAVASCRIPT ENGINE
+           STATE MANAGEMENT | EVENT HANDLERS
+           CHART INITIALIZATION | ANIMATIONS
+           ============================================ */
+        
+        // ============================================
+        // GLOBAL STATE
+        // ============================================
+        const EmotionalAnalyzerState = {
+            currentStreak: 3,
+            emotionalScore: 65,
+            weeklyEmotionalSpending: 6800,
+            weeklyNormalSpending: 4200,
+            totalBadgesUnlocked: 4,
+            activeChallenges: 2,
+            
+            // Spending by category
+            categories: {
+                foodDelivery: 3200,
+                shopping: 1800,
+                entertainment: 1200,
+                other: 600
+            },
+            
+            // Daily spending data
+            dailySpending: [800, 1500, 2800, 900, 1600, 2400, 700],
+            moodScores: [7, 6, 3, 8, 5, 4, 8],
+            
+            // Triggers
+            triggers: {
+                stressEating: { severity: 'high', count: 8, amount: 3200 },
+                retailTherapy: { severity: 'medium', count: 3, amount: 1800 },
+                celebration: { severity: 'low', count: 2, amount: 1200 }
+            }
+        };
+        
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventListeners();
+            initializeThemeSwitcher();
+            initializeScrollEffects();
+            initializeCharts();
+            animateGauge();
+            loadSavedData();
+            
+            console.log('✅ Emotional Expense Analyzer Initialized');
+        });
+        
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        function initializeEventListeners() {
+            // Back Button
+            document.getElementById('backButton')?.addEventListener('click', function() {
+                if (confirm('Go back to dashboard?')) {
+                    window.location.href = 'dashboard.html';
+                }
+            });
+            
+            // Profile Dropdown
+            const profileContainer = document.getElementById('profileContainer');
+            const profileTrigger = document.getElementById('profileTrigger');
+            
+            profileTrigger?.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileContainer.classList.toggle('open');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!profileContainer?.contains(e.target)) {
+                    profileContainer?.classList.remove('open');
+                }
+            });
+            
+            // Notification Button
+            document.getElementById('notificationButton')?.addEventListener('click', function() {
+                window.location.href = 'notifications.html';
+            });
+            
+            // Logout
+            document.getElementById('logoutButton')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.clear();
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+        
+        // ============================================
+        // THEME SWITCHER
+        // ============================================
+        function initializeThemeSwitcher() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            themeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    
+                    themeButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem('selectedTheme', theme);
+                    
+                    updateChartColors();
+                });
+            });
+            
+            const savedTheme = localStorage.getItem('selectedTheme') || 'nexus';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelector(`[data-theme="${savedTheme}"]`)?.classList.add('active');
+        }
+        
+        // ============================================
+        // SCROLL EFFECTS
+        // ============================================
+        function initializeScrollEffects() {
+            const header = document.getElementById('mainHeader');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header?.classList.add('scrolled');
+                } else {
+                    header?.classList.remove('scrolled');
+                }
+            });
+        }
+        
+        // ============================================
+        // GAUGE ANIMATION
+        // ============================================
+        function animateGauge() {
+            const gaugeFill = document.getElementById('gaugeFill');
+            const gaugeScore = document.getElementById('gaugeScore');
+            
+            if (!gaugeFill || !gaugeScore) return;
+            
+            const score = EmotionalAnalyzerState.emotionalScore;
+            const maxDash = 251.2;
+            const dashValue = (score / 100) * maxDash;
+            
+            // Animate the gauge
+            setTimeout(() => {
+                gaugeFill.style.strokeDasharray = `${dashValue} ${maxDash}`;
+            }, 300);
+            
+            // Animate the number
+            animateValue(gaugeScore, 0, score, 1500);
+        }
+        
+        function animateValue(element, start, end, duration) {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.round(current);
+            }, 16);
+        }
+        
+        // ============================================
+        // CHART INITIALIZATION
+        // ============================================
+        let emotionSpendingChart = null;
+        let categoryBreakdownChart = null;
+        let weeklyTrendChart = null;
+        
+        function initializeCharts() {
+            initEmotionSpendingChart();
+            initCategoryBreakdownChart();
+            initWeeklyTrendChart();
+        }
+        
+        function initEmotionSpendingChart() {
+            const ctx = document.getElementById('emotionSpendingChart');
+            if (!ctx) return;
+            
+            emotionSpendingChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Daily Spending (₹)',
+                            data: EmotionalAnalyzerState.dailySpending,
+                            borderColor: '#FF6B6B',
+                            backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Mood Score',
+                            data: EmotionalAnalyzerState.moodScores,
+                            borderColor: '#4ECDC4',
+                            backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + value;
+                                }
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            beginAtZero: true,
+                            max: 10,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '/10';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function initCategoryBreakdownChart() {
+            const ctx = document.getElementById('categoryBreakdownChart');
+            if (!ctx) return;
+            
+            const categories = EmotionalAnalyzerState.categories;
+            
+            categoryBreakdownChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Food Delivery', 'Shopping', 'Entertainment', 'Other'],
+                    datasets: [{
+                        data: [
+                            categories.foodDelivery,
+                            categories.shopping,
+                            categories.entertainment,
+                            categories.other
+                        ],
+                        backgroundColor: [
+                            '#FF6B6B',
+                            '#4ECDC4',
+                            '#95E1D3',
+                            '#FFC93C'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ₹' + formatNumber(context.parsed);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function initWeeklyTrendChart() {
+            const ctx = document.getElementById('weeklyTrendChart');
+            if (!ctx) return;
+            
+            weeklyTrendChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Emotional Spending',
+                            data: [400, 800, 1800, 400, 900, 1600, 300],
+                            backgroundColor: '#ef4444',
+                            borderRadius: 8,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'Normal Spending',
+                            data: [400, 700, 1000, 500, 700, 800, 400],
+                            backgroundColor: '#10b981',
+                            borderRadius: 8,
+                            borderSkipped: false
+                        },
+                        {
+                            label: 'Budget Line',
+                            data: [1000, 1000, 1000, 1000, 1000, 1000, 1000],
+                            type: 'line',
+                            borderColor: '#3b82f6',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    if (context.dataset.type === 'line') {
+                                        return 'Budget: ₹' + context.parsed.y;
+                                    }
+                                    return context.dataset.label + ': ₹' + context.parsed.y;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + (value / 1000) + 'K';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateChartColors() {
+            if (emotionSpendingChart) emotionSpendingChart.destroy();
+            if (categoryBreakdownChart) categoryBreakdownChart.destroy();
+            if (weeklyTrendChart) weeklyTrendChart.destroy();
+            
+            initializeCharts();
+        }
+        
+        // ============================================
+        // ACTION HANDLERS
+        // ============================================
+        function viewRecommendations() {
+            window.scrollTo({ top: document.querySelector('.coach-section').offsetTop - 80, behavior: 'smooth' });
+        }
+        
+        function trackMood() {
+            alert('📝 Mood Tracker\n\nHow are you feeling today?\n\n😊 Happy\n😐 Neutral\n😰 Stressed\n😢 Sad\n\n(Feature coming soon)');
+        }
+        
+        function pauseExpense() {
+            alert('⏸️ Expense Paused for 24 Hours\n\nGood decision! We\'ll remind you tomorrow. Use this time to think if you really need it.\n\n+15 Control Points earned! 🎯');
+            document.getElementById('interventionAlert').style.display = 'none';
+        }
+        
+        function viewAlternatives() {
+            window.scrollTo({ top: document.querySelector('.alternatives-card').offsetTop - 80, behavior: 'smooth' });
+            document.getElementById('interventionAlert').style.display = 'none';
+        }
+        
+        function continueExpense() {
+            if (confirm('Are you sure? This will count as emotional spending.')) {
+                alert('Okay, expense logged. No judgment! 💚\n\nBut remember: You have alternatives next time.');
+                document.getElementById('interventionAlert').style.display = 'none';
+            }
+        }
+        
+        function selectAlternative(type) {
+            const alternatives = {
+                cook: 'Great choice! 🍳 Cooking at home saves ₹400 and feels rewarding. +10 Control Points!',
+                walk: 'Awesome! 🚶 A walk clears the mind better than food. +15 Control Points!',
+                call: 'Perfect! 📞 Connection matters more than consumption. +12 Control Points!'
+            };
+            
+            alert(alternatives[type] || 'Alternative selected!');
+        }
+        
+        // ============================================
+        // UTILITY FUNCTIONS
+        // ============================================
+        function formatNumber(num) {
+            return num.toLocaleString('en-IN');
+        }
+        
+        function saveData() {
+            localStorage.setItem('emotionalAnalyzerState', JSON.stringify(EmotionalAnalyzerState));
+            localStorage.setItem('lastSaved', new Date().toISOString());
+        }
+        
+        function loadSavedData() {
+            const savedState = localStorage.getItem('emotionalAnalyzerState');
+            if (savedState) {
+                Object.assign(EmotionalAnalyzerState, JSON.parse(savedState));
+            }
+        }
+        
+        // Console message
+        console.log('%c🧠 Emotional Expense Analyzer', 'font-size: 24px; font-weight: bold; background: linear-gradient(90deg, #FF6B6B, #4ECDC4); -webkit-background-clip: text; color: transparent;');
+        console.log('%cVersion 1.0.0 | Built for Gig Workers', 'font-size: 12px; color: #9ca3af;');
+        console.log('%c💡 Track emotions, control spending!', 'font-size: 12px; color: #4ECDC4;');
+    </script>
+    <style>
+        /* ============================================
+           PART 5/5: AI CHATBOT WIDGET
+           FLOATING ASSISTANT | EMOTIONAL SUPPORT
+           CONTEXT-AWARE RESPONSES | ANIMATIONS
+           ============================================ */
+        
+        /* ============================================
+           CHATBOT FLOATING BUTTON
+           ============================================ */
+        .chatbot-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl), var(--glow-primary);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            z-index: var(--z-popover);
+            animation: fabPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes fabPulse {
+            0%, 100% { transform: scale(1); box-shadow: var(--shadow-xl), var(--glow-primary); }
+            50% { transform: scale(1.05); box-shadow: var(--shadow-2xl), 0 0 50px rgba(255, 107, 107, 0.6); }
+        }
+        
+        .chatbot-fab:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-2xl), 0 0 60px rgba(255, 107, 107, 0.7);
+        }
+        
+        .chatbot-fab:active {
+            transform: scale(0.95);
+        }
+        
+        .chatbot-notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 24px;
+            height: 24px;
+            background: var(--error);
+            border: 3px solid var(--bg-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-primary);
+            animation: badgeBounce 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes badgeBounce {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+        
+        /* ============================================
+           CHATBOT WINDOW
+           ============================================ */
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 420px;
+            height: 640px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: var(--z-popover);
+            animation: chatbotSlideIn 0.3s var(--ease-smooth);
+        }
+        
+        @keyframes chatbotSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .chatbot-window.open {
+            display: flex;
+        }
+        
+        .chatbot-window::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-radial);
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* ============================================
+           CHATBOT HEADER
+           ============================================ */
+        .chatbot-header {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chatbot-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            position: relative;
+        }
+        
+        .chatbot-avatar::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background: var(--success);
+            border: 2px solid var(--bg-elevated);
+            border-radius: var(--radius-full);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes statusPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .chatbot-info {
+            flex: 1;
+        }
+        
+        .chatbot-name {
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .chatbot-status {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        .typing-indicator.active {
+            display: flex;
+        }
+        
+        .typing-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-tertiary);
+            border-radius: var(--radius-full);
+            animation: typingDot 1.4s ease-in-out infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingDot {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+        
+        .chatbot-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .chatbot-action-btn {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            font-size: 14px;
+        }
+        
+        .chatbot-action-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            transform: scale(1.1);
+        }
+        
+        /* ============================================
+           CHATBOT MESSAGES
+           ============================================ */
+        .chatbot-messages {
+            flex: 1;
+            padding: var(--spacing-lg);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+        
+        .message-group {
+            display: flex;
+            gap: var(--spacing-sm);
+            animation: messageSlideIn 0.3s var(--ease-smooth);
+        }
+        
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message-group.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .message-content {
+            max-width: 75%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .message-bubble {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .message-group.user .message-bubble {
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            border-color: transparent;
+        }
+        
+        .message-time {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            padding: 0 var(--spacing-sm);
+        }
+        
+        .message-group.user .message-time {
+            text-align: right;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .quick-action-btn {
+            padding: 8px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .quick-action-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        
+        /* ============================================
+           CHATBOT INPUT
+           ============================================ */
+        .chatbot-input-container {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-light);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .suggested-prompts {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .suggested-prompts::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .suggested-prompt {
+            flex-shrink: 0;
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            white-space: nowrap;
+        }
+        
+        .suggested-prompt:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+        
+        .chatbot-input-wrapper {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: flex-end;
+        }
+        
+        .chatbot-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+            font-family: var(--font-primary);
+            resize: none;
+            max-height: 120px;
+            min-height: 44px;
+            outline: none;
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .chatbot-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+        }
+        
+        .chatbot-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .chatbot-send-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .chatbot-send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg), var(--glow-primary);
+        }
+        
+        .chatbot-send-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* ============================================
+           MOBILE RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .chatbot-window {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                border: none;
+            }
+            
+            .chatbot-fab {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
+            }
+        }
+    </style>
+
+    <!-- AI Chatbot Widget -->
+    <div class="chatbot-container">
+        <!-- Floating Action Button -->
+        <button class="chatbot-fab" id="chatbotFAB" aria-label="Open AI Assistant">
+            🤖
+            <span class="chatbot-notification-badge" id="chatbotBadge" style="display: none;">2</span>
+        </button>
+        
+        <!-- Chatbot Window -->
+        <div class="chatbot-window" id="chatbotWindow">
+            <!-- Header -->
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div class="chatbot-info">
+                    <div class="chatbot-name">Emotional Support Assistant</div>
+                    <div class="chatbot-status">
+                        <span id="chatbotStatusText">Always here for you</span>
+                        <div class="typing-indicator" id="typingIndicator">
+                            <span class="typing-dot"></span>
+                            <span class="typing-dot"></span>
+                            <span class="typing-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatbot-actions">
+                    <button class="chatbot-action-btn" onclick="refreshChat()" title="Refresh">
+                        🔄
+                    </button>
+                    <button class="chatbot-action-btn" onclick="closeChatbot()" title="Close">
+                        ✕
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Messages Area -->
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Initial bot message -->
+                <div class="message-group">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Hi! I'm your emotional spending assistant. I noticed you had a tough week. How are you feeling? 💚
+                        </div>
+                        <div class="quick-actions">
+                            <button class="quick-action-btn" onclick="sendQuickReply('I feel stressed')">
+                                😰 Stressed
+                            </button>
+                            <button class="quick-action-btn" onclick="sendQuickReply('I\'m doing okay')">
+                                😊 Okay
+                            </button>
+                            <button class="quick-action-btn" onclick="sendQuickReply('Need help controlling spending')">
+                                💪 Need help
+                            </button>
+                        </div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="chatbot-input-container">
+                <div class="suggested-prompts" id="suggestedPrompts">
+                    <button class="suggested-prompt" onclick="sendSuggestedPrompt('Why do I spend when stressed?')">
+                        💡 Why stress spending?
+                    </button>
+                    <button class="suggested-prompt" onclick="sendSuggestedPrompt('How to stop impulse buying?')">
+                        🎯 Stop impulse buys
+                    </button>
+                    <button class="suggested-prompt" onclick="sendSuggestedPrompt('Show my progress')">
+                        📊 My progress
+                    </button>
+                </div>
+                
+                <div class="chatbot-input-wrapper">
+                    <textarea 
+                        class="chatbot-input" 
+                        id="chatbotInput" 
+                        placeholder="Share how you're feeling..."
+                        rows="1"
+                        onkeydown="handleChatKeydown(event)"
+                    ></textarea>
+                    <button class="chatbot-send-btn" onclick="sendMessage()" title="Send" id="sendBtn">
+                        ➤
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================
+           CHATBOT FUNCTIONALITY
+           ============================================ */
+        
+        let chatbotOpen = false;
+        let messageHistory = [];
+        
+        // Toggle Chatbot
+        document.getElementById('chatbotFAB').addEventListener('click', function() {
+            chatbotOpen = !chatbotOpen;
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const chatbotBadge = document.getElementById('chatbotBadge');
+            
+            if (chatbotOpen) {
+                chatbotWindow.classList.add('open');
+                chatbotBadge.style.display = 'none';
+            } else {
+                chatbotWindow.classList.remove('open');
+            }
+        });
+        
+        function closeChatbot() {
+            chatbotOpen = false;
+            document.getElementById('chatbotWindow').classList.remove('open');
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            addUserMessage(message);
+            input.value = '';
+            input.style.height = 'auto';
+            
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                const response = generateEmotionalResponse(message);
+                hideTypingIndicator();
+                addBotMessage(response);
+            }, 1500);
+        }
+        
+        function addUserMessage(text) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const currentTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            
+            const messageGroup = document.createElement('div');
+            messageGroup.className = 'message-group user';
+            messageGroup.innerHTML = `
+                <div class="message-content">
+                    <div class="message-bubble">${escapeHtml(text)}</div>
+                    <div class="message-time">${currentTime}</div>
+                </div>
+                <div class="message-avatar">👤</div>
+            `;
+            
+            messagesContainer.appendChild(messageGroup);
+            scrollToBottom();
+            messageHistory.push({ role: 'user', content: text, time: currentTime });
+        }
+        
+        function addBotMessage(text) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const currentTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            
+            const messageGroup = document.createElement('div');
+            messageGroup.className = 'message-group';
+            messageGroup.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="message-bubble">${text}</div>
+                    <div class="message-time">${currentTime}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageGroup);
+            scrollToBottom();
+            messageHistory.push({ role: 'bot', content: text, time: currentTime });
+        }
+        
+        function generateEmotionalResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('stress') || lowerMessage.includes('anxious') || lowerMessage.includes('worried')) {
+                return "I understand you're feeling stressed. 💚 Remember: <strong>stress spending is temporary relief but creates long-term regret.</strong><br><br>Try this: Take 5 deep breaths right now. Then ask yourself - will this purchase help tomorrow? You've been strong for 3 days! 💪";
+            }
+            
+            if (lowerMessage.includes('why') && (lowerMessage.includes('spend') || lowerMessage.includes('buy'))) {
+                return "Great question! 🧠<br><br>Your brain links spending with <strong>instant dopamine</strong> (feel-good chemical). When stressed, your brain craves that quick fix.<br><br>But here's the good news: You can rewire this! Every time you pause and choose NOT to spend, you're building new neural pathways. That's why your 3-day streak matters! 🎯";
+            }
+            
+            if (lowerMessage.includes('progress') || lowerMessage.includes('doing')) {
+                return "You're doing AMAZING! 🌟<br><br>✅ 3-day no-impulse streak<br>✅ 65/100 control score<br>✅ Saved ₹900 vs last week<br><br>Remember: Progress isn't perfect. It's about being 1% better each day. And you ARE! Keep going! 💪";
+            }
+            
+            if (lowerMessage.includes('stop') || lowerMessage.includes('control') || lowerMessage.includes('impulse')) {
+                return "Here's my best tip: <strong>The 24-hour rule</strong> ⏰<br><br>When you want to buy something:<br>1. Write it down<br>2. Wait 24 hours<br>3. If you still want it tomorrow, reconsider<br><br>80% of impulse urges fade in 24 hours! Also, remove saved cards from apps - that extra friction helps! 🛡️";
+            }
+            
+            if (lowerMessage.includes('help') || lowerMessage.includes('support')) {
+                return "I'm here for you! 💚<br><br>Here's what I can help with:<br>• Understanding your triggers<br>• Finding alternatives to spending<br>• Tracking your progress<br>• Celebrating your wins<br>• Being here when you need to talk<br><br>What would help you most right now?";
+            }
+            
+            return "I hear you. 💚 Managing emotions and money is tough, but you're already taking the hardest step - awareness!<br><br>Remember: Every time you <strong>pause before spending</strong>, you're winning. Want to talk about what triggered you today?";
+        }
+        
+        function sendQuickReply(message) {
+            document.getElementById('chatbotInput').value = message;
+            sendMessage();
+        }
+        
+        function sendSuggestedPrompt(prompt) {
+            document.getElementById('chatbotInput').value = prompt;
+            sendMessage();
+        }
+        
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').classList.add('active');
+            document.getElementById('chatbotStatusText').style.display = 'none';
+        }
+        
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').classList.remove('active');
+            document.getElementById('chatbotStatusText').style.display = 'inline';
+        }
+        
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function handleChatKeydown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        
+        function refreshChat() {
+            if (confirm('Clear chat history and start fresh?')) {
+                messageHistory = [];
+                const messagesContainer = document.getElementById('chatbotMessages');
+                messagesContainer.innerHTML = `
+                    <div class="message-group">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Hi! I'm your emotional spending assistant. I noticed you had a tough week. How are you feeling? 💚
+                            </div>
+                            <div class="quick-actions">
+                                <button class="quick-action-btn" onclick="sendQuickReply('I feel stressed')">
+                                    😰 Stressed
+                                </button>
+                                <button class="quick-action-btn" onclick="sendQuickReply('I\\'m doing okay')">
+                                    😊 Okay
+                                </button>
+                                <button class="quick-action-btn" onclick="sendQuickReply('Need help controlling spending')">
+                                    💪 Need help
+                                </button>
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Auto-resize textarea
+        document.getElementById('chatbotInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+        
+        // Show notification badge after 5 seconds
+        setTimeout(() => {
+            if (!chatbotOpen) {
+                document.getElementById('chatbotBadge').style.display = 'flex';
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

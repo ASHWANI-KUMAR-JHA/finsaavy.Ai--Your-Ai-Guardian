@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - FinSavvy AI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1f1f1f;
+            --bg-elevated: #252525;
+            --bg-input: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-tertiary: #9ca3af;
+            --text-muted: #6b7280;
+            --gradient-primary: linear-gradient(90deg, #FF6B6B 0%, #4ECDC4 100%);
+            --accent-coral: #FF6B6B;
+            --accent-teal: #4ECDC4;
+            --accent-green: #34A853;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --glow-combined: 0 0 30px rgba(255, 107, 107, 0.4), 0 0 60px rgba(78, 205, 196, 0.3);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Animated Background */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, var(--bg-secondary), var(--bg-primary));
+            overflow: hidden;
+        }
+        
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 107, 107, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(78, 205, 196, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 30s linear infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+        
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.12;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-coral) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+        
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-teal) 0%, transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 10s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.1); }
+        }
+        
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s var(--ease-smooth);
+            z-index: 100;
+        }
+        
+        .back-button:hover {
+            background: var(--bg-elevated);
+            transform: translateX(-4px);
+        }
+        
+        /* Main Container */
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 24px;
+            animation: fadeInUp 0.8s var(--ease-smooth);
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Auth Card */
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 48px 32px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        
+        /* Header */
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .auth-title {
+            font-size: 36px;
+            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 12px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .auth-subtitle {
+            font-size: 16px;
+            color: var(--text-tertiary);
+            line-height: 1.5;
+        }
+        
+        /* Form */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .form-input {
+            padding: 16px 20px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s var(--ease-smooth);
+            font-family: inherit;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-coral);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+            background: var(--bg-elevated);
+        }
+        
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .form-input.valid {
+            border-color: var(--accent-green);
+        }
+        
+        /* Phone Input */
+        .phone-wrapper {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .country-code {
+            width: 90px;
+            padding: 16px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .country-code:focus {
+            outline: none;
+            border-color: var(--accent-coral);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+        }
+        
+        .phone-input {
+            flex: 1;
+        }
+        
+        /* Continue Button */
+        .btn-continue {
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            box-shadow: var(--glow-combined);
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-continue::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-continue:hover::before {
+            width: 500px;
+            height: 500px;
+        }
+        
+        .btn-continue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.7);
+        }
+        
+        .btn-continue span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-continue:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-continue:disabled:hover::before {
+            width: 0;
+            height: 0;
+        }
+        
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border-subtle);
+        }
+        
+        .divider-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        /* Google Sign In */
+        .google-signin {
+            width: 100%;
+            padding: 16px;
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 12px;
+            color: #202124;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .google-signin:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .google-icon {
+            width: 20px;
+            height: 20px;
+            background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg);
+            border-radius: 2px;
+        }
+        
+        /* Terms */
+        .terms-text {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .terms-link {
+            color: var(--accent-coral);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .terms-link:hover {
+            color: var(--accent-teal);
+        }
+        
+        /* Progress Indicator */
+        .progress-indicator {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .progress-dot.active {
+            background: var(--gradient-primary);
+            width: 28px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .auth-card {
+                padding: 32px 24px;
+            }
+            
+            .auth-title {
+                font-size: 28px;
+            }
+            
+            .back-button {
+                top: 16px;
+                left: 16px;
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="page-background">
+        <div class="bg-grid"></div>
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+    </div>
+    
+    <!-- Back Button -->
+    <a href="onboarding.html" class="back-button">
+        <span>←</span>
+        <span>Back</span>
+    </a>
+    
+    <!-- Main Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Header -->
+            <div class="auth-header">
+                <h1 class="auth-title">Create Your Account</h1>
+                <p class="auth-subtitle">Join thousands achieving financial freedom with AI</p>
+            </div>
+            
+            <!-- Registration Form -->
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input 
+                        type="text" 
+                        class="form-input" 
+                        id="fullName"
+                        placeholder="John Doe"
+                        required
+                        minlength="3"
+                        autocomplete="name"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input 
+                        type="email" 
+                        class="form-input" 
+                        id="emailInput"
+                        placeholder="you@example.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Phone Number *</label>
+                    <div class="phone-wrapper">
+                        <select class="country-code" id="countryCode">
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+86">🇨🇳 +86</option>
+                        </select>
+                        <input 
+                            type="tel" 
+                            class="form-input phone-input" 
+                            id="phoneInput"
+                            placeholder="1234567890"
+                            maxlength="10"
+                            required
+                            autocomplete="tel"
+                        >
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-continue" id="continueBtn" disabled>
+                    <span>Continue</span>
+                </button>
+            </form>
+            
+            <!-- Divider -->
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">or</span>
+                <div class="divider-line"></div>
+            </div>
+            
+            <!-- Google Sign In -->
+            <button class="google-signin" id="googleBtn" type="button">
+                <div class="google-icon"></div>
+                <span>Continue with Google</span>
+            </button>
+            
+            <!-- Terms -->
+            <p class="terms-text">
+                By continuing, you agree to our
+                <a href="#" class="terms-link">Terms of Service</a> and
+                <a href="#" class="terms-link">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-dot active"></div>
+        <div class="progress-dot"></div>
+        <div class="progress-dot"></div>
+        <div class="progress-dot"></div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="assets/app.js"></script>
+    <script>
+        // Get form elements
+        const registerForm = document.getElementById('registerForm');
+        const fullNameInput = document.getElementById('fullName');
+        const emailInput = document.getElementById('emailInput');
+        const phoneInput = document.getElementById('phoneInput');
+        const countryCodeSelect = document.getElementById('countryCode');
+        const continueBtn = document.getElementById('continueBtn');
+        const googleBtn = document.getElementById('googleBtn');
+        
+        // Validation function
+        function validateForm() {
+            const nameValid = fullNameInput.value.trim().length >= 3;
+            const emailValid = emailInput.value.includes('@') && emailInput.value.includes('.');
+            const phoneValid = phoneInput.value.length === 10;
+            
+            // Enable/disable button
+            continueBtn.disabled = !(nameValid && emailValid && phoneValid);
+            
+            // Add valid class to phone input
+            if (phoneValid) {
+                phoneInput.classList.add('valid');
+            } else {
+                phoneInput.classList.remove('valid');
+            }
+        }
+        
+        // Phone input - only numbers
+        phoneInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            validateForm();
+        });
+        
+        // Real-time validation
+        fullNameInput.addEventListener('input', validateForm);
+        emailInput.addEventListener('input', validateForm);
+        
+        // Handle Form Submit
+        registerForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const userData = {
+                name: fullNameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: countryCodeSelect.value + phoneInput.value
+            };
+            
+            console.log('✅ Registration Data:', userData);
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('userName', userData.name);
+            sessionStorage.setItem('userEmail', userData.email);
+            sessionStorage.setItem('userPhone', userData.phone);
+            sessionStorage.setItem('authMethod', 'phone');
+            
+            // Send OTP to email via backend
+            try {
+                await FinApi.requestOtpByEmail(userData.email);
+            } catch (e) {
+                alert('Failed to send OTP: ' + e.message);
+                return;
+            }
+
+            // Show success message
+            continueBtn.innerHTML = '<span>✓ Redirecting...</span>';
+            continueBtn.disabled = true;
+
+            // Redirect to OTP Verification
+            setTimeout(() => {
+                window.location.href = 'otp-verification.html';
+            }, 500);
+        });
+        
+        // Handle Google Sign In
+        googleBtn.addEventListener('click', function() {
+            console.log('🔵 Google Sign In clicked');
+            
+            // Save auth method
+            sessionStorage.setItem('authMethod', 'google');
+            sessionStorage.setItem('userName', 'Google User');
+            
+            // Show loading
+            googleBtn.innerHTML = '<div class="google-icon"></div><span>Connecting...</span>';
+            googleBtn.disabled = true;
+            
+            // Simulate Google OAuth
+            setTimeout(() => {
+                console.log('✅ Google authentication successful');
+                window.location.href = 'usertypeselection.html';
+            }, 1000);
+        });
+        
+        // Auto-focus first input
+        window.addEventListener('load', () => {
+            fullNameInput.focus();
+        });
+        
+        // Log page load
+        console.log(`
+╔════════════════════════════════════════════╗
+║   FINSAVVY AI - REGISTRATION (auth.html)  ║
+╠════════════════════════════════════════════╣
+║   ✓ Name + Email + Phone                  ║
+║   ✓ Google Sign In                        ║
+║   ✓ Real-time validation                  ║
+║   ✓ Connected to usertypeselection.html   ║
+╠════════════════════════════════════════════╣
+║   Step 1/4: Account Creation              ║
+║   Next: Profile Selection →               ║
+╚════════════════════════════════════════════╝
+        `);
+    </script>
+</body>
+</html>

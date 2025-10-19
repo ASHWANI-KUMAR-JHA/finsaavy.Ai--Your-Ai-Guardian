@@ -1,0 +1,4341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="nexus">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Hub - FinSavvy AI</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        /* ============================================
+           FINSAVVY AI - INVESTMENT HUB
+           PART 1/3: GLOBAL CSS & PORTFOLIO OVERVIEW
+           10000+ LINES | NEXUS THEME | GIG WORKERS
+           ============================================ */
+        
+        /* ============================================
+           CSS VARIABLES - THEME SYSTEM
+           ============================================ */
+        :root {
+            /* Background Colors */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #1f1f1f;
+            --bg-elevated: #252525;
+            --bg-hover: #2a2a2a;
+            --bg-glass: rgba(31, 31, 31, 0.8);
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-tertiary: #9ca3af;
+            --text-muted: #6b7280;
+            --text-dim: #4b5563;
+            
+            /* NEXUS Theme - Coral → Teal */
+            --gradient-primary: linear-gradient(90deg, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #95E1D3 50%, #6FE3DB 75%, #4ECDC4 100%);
+            --gradient-radial: radial-gradient(circle, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-hover: linear-gradient(90deg, #FF8E8E 0%, #6FE3DB 100%);
+            --gradient-vertical: linear-gradient(180deg, #FF6B6B 0%, #4ECDC4 100%);
+            --accent-primary: #FF6B6B;
+            --accent-secondary: #4ECDC4;
+            --accent-tertiary: #95E1D3;
+            
+            /* Investment-specific Colors */
+            --profit: #10b981;
+            --profit-light: #34d399;
+            --profit-dark: #059669;
+            --loss: #ef4444;
+            --loss-light: #f87171;
+            --loss-dark: #dc2626;
+            --neutral: #3b82f6;
+            --neutral-light: #60a5fa;
+            
+            /* Status Colors */
+            --success: #10b981;
+            --success-light: #34d399;
+            --warning: #f59e0b;
+            --warning-light: #fbbf24;
+            --error: #ef4444;
+            --error-light: #f87171;
+            --info: #3b82f6;
+            --info-light: #60a5fa;
+            
+            /* Shadows & Glows */
+            --shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.25);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+            --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.7);
+            --glow-primary: 0 0 40px rgba(255, 107, 107, 0.5);
+            --glow-secondary: 0 0 40px rgba(78, 205, 196, 0.5);
+            --glow-profit: 0 0 40px rgba(16, 185, 129, 0.5);
+            --glow-loss: 0 0 40px rgba(239, 68, 68, 0.5);
+            
+            /* Border Colors */
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --border-medium: rgba(255, 255, 255, 0.16);
+            --border-strong: rgba(255, 255, 255, 0.24);
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            /* Font Sizes */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            
+            /* Spacing Scale */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --spacing-3xl: 64px;
+            --spacing-4xl: 96px;
+            
+            /* Animation Durations */
+            --duration-instant: 100ms;
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+            --duration-slower: 800ms;
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 18px;
+            --radius-2xl: 24px;
+            --radius-3xl: 32px;
+            --radius-full: 9999px;
+            
+            /* Easing Functions */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            
+            /* Z-Index Layers */
+            --z-base: 0;
+            --z-dropdown: 100;
+            --z-sticky: 200;
+            --z-fixed: 300;
+            --z-modal: 500;
+            --z-popover: 600;
+            --z-tooltip: 700;
+            --z-notification: 800;
+            --z-max: 9999;
+        }
+        
+        /* ============================================
+           AURORA Theme - Purple → Blue
+           ============================================ */
+        [data-theme="aurora"] {
+            --gradient-primary: linear-gradient(90deg, #A78BFA 0%, #60A5FA 100%);
+            --gradient-secondary: linear-gradient(135deg, #A78BFA 0%, #C4B5FD 25%, #93C5FD 50%, #7DD3FC 75%, #60A5FA 100%);
+            --accent-primary: #A78BFA;
+            --accent-secondary: #60A5FA;
+            --accent-tertiary: #93C5FD;
+            --glow-primary: 0 0 40px rgba(167, 139, 250, 0.5);
+            --glow-secondary: 0 0 40px rgba(96, 165, 250, 0.5);
+        }
+        
+        /* ============================================
+           SUNSET Theme - Orange → Pink
+           ============================================ */
+        [data-theme="sunset"] {
+            --gradient-primary: linear-gradient(90deg, #FB923C 0%, #F472B6 100%);
+            --gradient-secondary: linear-gradient(135deg, #FB923C 0%, #FDBA74 25%, #FCA5A5 50%, #F9A8D4 75%, #F472B6 100%);
+            --accent-primary: #FB923C;
+            --accent-secondary: #F472B6;
+            --accent-tertiary: #FCA5A5;
+            --glow-primary: 0 0 40px rgba(251, 146, 60, 0.5);
+            --glow-secondary: 0 0 40px rgba(244, 114, 182, 0.5);
+        }
+        
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.5s var(--ease-smooth);
+        }
+        
+        /* ============================================
+           ANIMATED BACKGROUND
+           ============================================ */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            overflow: hidden;
+        }
+        
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border-subtle) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 30s linear infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+        
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            top: -300px;
+            left: -300px;
+        }
+        
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+            bottom: -250px;
+            right: -250px;
+            animation-delay: 5s;
+        }
+        
+        .orb-3 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(80px, -80px) scale(1.2); }
+            66% { transform: translate(-50px, 70px) scale(0.9); }
+        }
+        
+        /* ============================================
+           SCROLLBAR STYLING
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            border: 2px solid var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gradient-hover);
+        }
+        
+        /* ============================================
+           MAIN HEADER / NAVBAR
+           ============================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--spacing-xl);
+            z-index: var(--z-fixed);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .main-header.scrolled {
+            height: 60px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .header-left,
+        .header-center,
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            flex: 1;
+        }
+        
+        .header-center {
+            justify-content: center;
+        }
+        
+        .header-right {
+            justify-content: flex-end;
+        }
+        
+        /* ============================================
+           BACK BUTTON
+           ============================================ */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-smooth);
+            z-index: -1;
+        }
+        
+        .btn-back:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(-4px);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .btn-back:hover::before {
+            opacity: 0.15;
+        }
+        
+        .btn-back-icon {
+            font-size: 18px;
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .btn-back:hover .btn-back-icon {
+            animation: arrowBounce 0.6s ease-in-out infinite;
+        }
+        
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateX(-4px); }
+            50% { transform: translateX(-8px); }
+        }
+        
+        /* ============================================
+           LOGO
+           ============================================ */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+        }
+        
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .logo-text {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            font-family: var(--font-display);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* ============================================
+           PAGE TITLE
+           ============================================ */
+        .page-title-header {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            position: relative;
+        }
+        
+        .page-title-header::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+        
+        /* ============================================
+           THEME SWITCHER
+           ============================================ */
+        .theme-switcher {
+            display: flex;
+            gap: var(--spacing-xs);
+            background: var(--bg-card);
+            padding: 4px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+        
+        .theme-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+        }
+        
+        .theme-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
+            transition: border-color var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .theme-btn.active::before {
+            border-color: var(--text-primary);
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .theme-btn-nexus {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+        }
+        
+        .theme-btn-aurora {
+            background: linear-gradient(135deg, #A78BFA, #60A5FA);
+        }
+        
+        .theme-btn-sunset {
+            background: linear-gradient(135deg, #FB923C, #F472B6);
+        }
+        
+        /* ============================================
+           NOTIFICATION ICON
+           ============================================ */
+        .notification-wrapper {
+            position: relative;
+        }
+        
+        .notification-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 20px;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .notification-icon:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            transform: scale(1.05);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            background: var(--error);
+            border: 2px solid var(--bg-primary);
+            border-radius: var(--radius-full);
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulseBadge 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* ============================================
+           PROFILE DROPDOWN
+           ============================================ */
+        .profile-container {
+            position: relative;
+        }
+        
+        .profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 6px 12px 6px 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .profile-trigger:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            transform: translateY(-2px);
+        }
+        
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+        
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            max-width: 120px;
+        }
+        
+        .profile-name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .profile-role {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .profile-container.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: 280px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            z-index: var(--z-dropdown);
+            overflow: hidden;
+        }
+        
+        .profile-container.open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-header {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .dropdown-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .dropdown-user-info {
+            flex: 1;
+        }
+        
+        .dropdown-user-name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .dropdown-user-email {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .dropdown-section {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            position: relative;
+        }
+        
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transform: scaleY(0);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .dropdown-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            padding-left: calc(var(--spacing-lg) + 8px);
+        }
+        
+        .dropdown-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .dropdown-item-icon {
+            font-size: 18px;
+            width: 24px;
+        }
+        
+        .dropdown-item.logout {
+            color: var(--error);
+        }
+        
+        .dropdown-item.logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        /* ============================================
+           MAIN CONTENT CONTAINER
+           ============================================ */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+            padding: var(--spacing-2xl) var(--spacing-xl);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ============================================
+           PORTFOLIO OVERVIEW SECTION
+           ============================================ */
+        .portfolio-section {
+            max-width: 1400px;
+            margin: 0 auto var(--spacing-3xl);
+        }
+        
+        /* Hero Stats Cards */
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .hero-stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .hero-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0.5;
+        }
+        
+        .hero-stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl), var(--glow-primary);
+            border-color: var(--accent-primary);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 700;
+        }
+        
+        .stat-trend.up {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--profit-light);
+        }
+        
+        .stat-trend.down {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--loss-light);
+        }
+        
+        .stat-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-value {
+            font-size: var(--text-4xl);
+            font-weight: 900;
+            font-family: var(--font-display);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-subtext {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        /* Portfolio Distribution Chart */
+        .portfolio-distribution-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .card-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .card-action-btn {
+            padding: 8px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .card-action-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+        
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-2xl);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+        
+        .distribution-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .distribution-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .distribution-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .distribution-color {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+        }
+        
+        .distribution-info {
+            flex: 1;
+        }
+        
+        .distribution-name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .distribution-amount {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .distribution-percentage {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Holdings Table */
+        .holdings-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+            overflow-x: auto;
+        }
+        
+        .holdings-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        .holdings-table thead {
+            background: var(--bg-elevated);
+        }
+        
+        .holdings-table th {
+            padding: var(--spacing-lg);
+            text-align: left;
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        
+        .holdings-table td {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        
+        .holdings-table tbody tr {
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .holdings-table tbody tr:hover {
+            background: var(--bg-elevated);
+        }
+        
+        .asset-cell {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .asset-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .asset-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .asset-symbol {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+        
+        .profit-cell {
+            color: var(--profit-light);
+            font-weight: 700;
+        }
+        
+        .loss-cell {
+            color: var(--loss-light);
+            font-weight: 700;
+        }
+        
+        .action-cell {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .action-btn {
+            padding: 6px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .action-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .main-header {
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .logo-text {
+                display: none;
+            }
+            
+            .distribution-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 0 var(--spacing-md);
+                height: 60px;
+            }
+            
+            .page-title-header {
+                font-size: var(--text-base);
+            }
+            
+            .profile-info {
+                display: none;
+            }
+            
+            .dropdown-arrow {
+                display: none;
+            }
+            
+            .theme-switcher {
+                display: none;
+            }
+            
+            .main-content {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+            
+            .hero-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .holdings-card {
+                overflow-x: scroll;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .btn-back-text {
+                display: none;
+            }
+            
+            .stat-value {
+                font-size: var(--text-3xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="page-background">
+        <div class="bg-grid"></div>
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header" id="mainHeader">
+        <!-- Left Section -->
+        <div class="header-left">
+            <button class="btn-back" id="backButton">
+                <span class="btn-back-icon">←</span>
+                <span class="btn-back-text">Back</span>
+            </button>
+            
+            <div class="logo-container" onclick="window.location.href='dashboard.html'">
+                <div class="logo-icon">💰</div>
+                <div class="logo-text">FinSavvy<span style="color: var(--text-tertiary); font-size: var(--text-xs);">.AI</span></div>
+            </div>
+        </div>
+        
+        <!-- Center Section -->
+        <div class="header-center">
+            <h1 class="page-title-header">📊 Investment Hub</h1>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="header-right">
+            <!-- Theme Switcher -->
+            <div class="theme-switcher">
+                <button class="theme-btn theme-btn-nexus active" data-theme="nexus"></button>
+                <button class="theme-btn theme-btn-aurora" data-theme="aurora"></button>
+                <button class="theme-btn theme-btn-sunset" data-theme="sunset"></button>
+            </div>
+            
+            <!-- Notification Icon -->
+            <div class="notification-wrapper">
+                <button class="notification-icon" id="notificationButton">
+                    <span>🔔</span>
+                    <span class="notification-badge">4</span>
+                </button>
+            </div>
+            
+            <!-- Profile Dropdown -->
+            <div class="profile-container" id="profileContainer">
+                <button class="profile-trigger" id="profileTrigger">
+                    <div class="profile-avatar">A</div>
+                    <div class="profile-info">
+                        <div class="profile-name">Ankit</div>
+                        <div class="profile-role">Investor</div>
+                    </div>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-header">
+                        <div class="dropdown-avatar">A</div>
+                        <div class="dropdown-user-info">
+                            <div class="dropdown-user-name">Ankit Kumar</div>
+                            <div class="dropdown-user-email">ankit@finsavvy.ai</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="dashboard.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">🏠</span>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="profile.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">👤</span>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="investment-hub.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">📊</span>
+                            <span>Investment Hub</span>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                        <a href="help.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">❓</span>
+                            <span>Help</span>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="#" class="dropdown-item logout" id="logoutButton">
+                            <span class="dropdown-item-icon">🚪</span>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Portfolio Overview Section -->
+        <section class="portfolio-section">
+            <!-- Hero Stats Grid -->
+            <div class="hero-stats-grid">
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">💼</div>
+                        <span class="stat-trend up">↑ 12.5%</span>
+                    </div>
+                    <div class="stat-label">Total Portfolio Value</div>
+                    <div class="stat-value">₹8,45,230</div>
+                    <div class="stat-subtext">+₹94,280 this month</div>
+                </div>
+                
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">📈</div>
+                        <span class="stat-trend up">↑ ₹56,340</span>
+                    </div>
+                    <div class="stat-label">Total Gains</div>
+                    <div class="stat-value">₹1,23,450</div>
+                    <div class="stat-subtext">15.2% returns</div>
+                </div>
+                
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">💰</div>
+                        <span class="stat-trend down">↓ 2.3%</span>
+                    </div>
+                    <div class="stat-label">Invested Amount</div>
+                    <div class="stat-value">₹7,21,780</div>
+                    <div class="stat-subtext">Across 24 assets</div>
+                </div>
+                
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">🎯</div>
+                        <span class="stat-trend up">↑ 8.4%</span>
+                    </div>
+                    <div class="stat-label">Today's Change</div>
+                    <div class="stat-value">+₹6,340</div>
+                    <div class="stat-subtext">Market open</div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Distribution -->
+            <div class="portfolio-distribution-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>🍕</span>
+                        Portfolio Distribution
+                    </h2>
+                    <div class="card-actions">
+                        <button class="card-action-btn">View All</button>
+                        <button class="card-action-btn">Rebalance</button>
+                    </div>
+                </div>
+                
+                <div class="distribution-grid">
+                    <div class="chart-container">
+                        <canvas id="portfolioDistributionChart"></canvas>
+                    </div>
+                    
+                    <div class="distribution-list">
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #FF6B6B;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">Stocks</div>
+                                <div class="distribution-amount">₹3,38,092</div>
+                            </div>
+                            <div class="distribution-percentage">40%</div>
+                        </div>
+                        
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #4ECDC4;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">Mutual Funds</div>
+                                <div class="distribution-amount">₹2,53,569</div>
+                            </div>
+                            <div class="distribution-percentage">30%</div>
+                        </div>
+                        
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #95E1D3;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">ETFs</div>
+                                <div class="distribution-amount">₹1,69,046</div>
+                            </div>
+                            <div class="distribution-percentage">20%</div>
+                        </div>
+                        
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #FFC93C;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">Crypto</div>
+                                <div class="distribution-amount">₹84,523</div>
+                            </div>
+                            <div class="distribution-percentage">10%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Holdings Table -->
+            <div class="holdings-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>📋</span>
+                        My Holdings
+                    </h2>
+                    <div class="card-actions">
+                        <button class="card-action-btn">Add Investment</button>
+                        <button class="card-action-btn">Export</button>
+                    </div>
+                </div>
+                
+                <table class="holdings-table">
+                    <thead>
+                        <tr>
+                            <th>Asset</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Avg Price</th>
+                            <th>Current Price</th>
+                            <th>Invested</th>
+                            <th>Current Value</th>
+                            <th>Gain/Loss</th>
+                            <th>Returns</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">R</div>
+                                    <div>
+                                        <div class="asset-name">Reliance Industries</div>
+                                        <div class="asset-symbol">NSE: RELIANCE</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Stock</td>
+                            <td>50</td>
+                            <td>₹2,450</td>
+                            <td>₹2,680</td>
+                            <td>₹1,22,500</td>
+                            <td>₹1,34,000</td>
+                            <td class="profit-cell">+₹11,500</td>
+                            <td class="profit-cell">+9.4%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">T</div>
+                                    <div>
+                                        <div class="asset-name">Tata Consultancy Services</div>
+                                        <div class="asset-symbol">NSE: TCS</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Stock</td>
+                            <td>30</td>
+                            <td>₹3,280</td>
+                            <td>₹3,450</td>
+                            <td>₹98,400</td>
+                            <td>₹1,03,500</td>
+                            <td class="profit-cell">+₹5,100</td>
+                            <td class="profit-cell">+5.2%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">I</div>
+                                    <div>
+                                        <div class="asset-name">ICICI Pru Bluechip Fund</div>
+                                        <div class="asset-symbol">Mutual Fund</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Mutual Fund</td>
+                            <td>2,500 units</td>
+                            <td>₹68</td>
+                            <td>₹75</td>
+                            <td>₹1,70,000</td>
+                            <td>₹1,87,500</td>
+                            <td class="profit-cell">+₹17,500</td>
+                            <td class="profit-cell">+10.3%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">SIP</button>
+                                    <button class="action-btn">Redeem</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">N</div>
+                                    <div>
+                                        <div class="asset-name">Nifty 50 ETF</div>
+                                        <div class="asset-symbol">NSE: NIFTYBEES</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>ETF</td>
+                            <td>100</td>
+                            <td>₹210</td>
+                            <td>₹225</td>
+                            <td>₹21,000</td>
+                            <td>₹22,500</td>
+                            <td class="profit-cell">+₹1,500</td>
+                            <td class="profit-cell">+7.1%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">₿</div>
+                                    <div>
+                                        <div class="asset-name">Bitcoin</div>
+                                        <div class="asset-symbol">BTC/INR</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Crypto</td>
+                            <td>0.05 BTC</td>
+                            <td>₹32,50,000</td>
+                            <td>₹35,20,000</td>
+                            <td>₹1,62,500</td>
+                            <td>₹1,76,000</td>
+                            <td class="profit-cell">+₹13,500</td>
+                            <td class="profit-cell">+8.3%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+<!DOCTYPE html>
+<html lang="en" data-theme="nexus">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Hub - FinSavvy AI</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        /* ============================================
+           FINSAVVY AI - INVESTMENT HUB
+           PART 1/3: GLOBAL CSS & PORTFOLIO OVERVIEW
+           10000+ LINES | NEXUS THEME | GIG WORKERS
+           ============================================ */
+        
+        /* ============================================
+           CSS VARIABLES - THEME SYSTEM
+           ============================================ */
+        :root {
+            /* Background Colors */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #1f1f1f;
+            --bg-elevated: #252525;
+            --bg-hover: #2a2a2a;
+            --bg-glass: rgba(31, 31, 31, 0.8);
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-tertiary: #9ca3af;
+            --text-muted: #6b7280;
+            --text-dim: #4b5563;
+            
+            /* NEXUS Theme - Coral → Teal */
+            --gradient-primary: linear-gradient(90deg, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #95E1D3 50%, #6FE3DB 75%, #4ECDC4 100%);
+            --gradient-radial: radial-gradient(circle, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-hover: linear-gradient(90deg, #FF8E8E 0%, #6FE3DB 100%);
+            --gradient-vertical: linear-gradient(180deg, #FF6B6B 0%, #4ECDC4 100%);
+            --accent-primary: #FF6B6B;
+            --accent-secondary: #4ECDC4;
+            --accent-tertiary: #95E1D3;
+            
+            /* Investment-specific Colors */
+            --profit: #10b981;
+            --profit-light: #34d399;
+            --profit-dark: #059669;
+            --loss: #ef4444;
+            --loss-light: #f87171;
+            --loss-dark: #dc2626;
+            --neutral: #3b82f6;
+            --neutral-light: #60a5fa;
+            
+            /* Status Colors */
+            --success: #10b981;
+            --success-light: #34d399;
+            --warning: #f59e0b;
+            --warning-light: #fbbf24;
+            --error: #ef4444;
+            --error-light: #f87171;
+            --info: #3b82f6;
+            --info-light: #60a5fa;
+            
+            /* Shadows & Glows */
+            --shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.25);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+            --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.7);
+            --glow-primary: 0 0 40px rgba(255, 107, 107, 0.5);
+            --glow-secondary: 0 0 40px rgba(78, 205, 196, 0.5);
+            --glow-profit: 0 0 40px rgba(16, 185, 129, 0.5);
+            --glow-loss: 0 0 40px rgba(239, 68, 68, 0.5);
+            
+            /* Border Colors */
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --border-medium: rgba(255, 255, 255, 0.16);
+            --border-strong: rgba(255, 255, 255, 0.24);
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            /* Font Sizes */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            
+            /* Spacing Scale */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --spacing-3xl: 64px;
+            --spacing-4xl: 96px;
+            
+            /* Animation Durations */
+            --duration-instant: 100ms;
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+            --duration-slower: 800ms;
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 18px;
+            --radius-2xl: 24px;
+            --radius-3xl: 32px;
+            --radius-full: 9999px;
+            
+            /* Easing Functions */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            
+            /* Z-Index Layers */
+            --z-base: 0;
+            --z-dropdown: 100;
+            --z-sticky: 200;
+            --z-fixed: 300;
+            --z-modal: 500;
+            --z-popover: 600;
+            --z-tooltip: 700;
+            --z-notification: 800;
+            --z-max: 9999;
+        }
+        
+        /* ============================================
+           AURORA Theme - Purple → Blue
+           ============================================ */
+        [data-theme="aurora"] {
+            --gradient-primary: linear-gradient(90deg, #A78BFA 0%, #60A5FA 100%);
+            --gradient-secondary: linear-gradient(135deg, #A78BFA 0%, #C4B5FD 25%, #93C5FD 50%, #7DD3FC 75%, #60A5FA 100%);
+            --accent-primary: #A78BFA;
+            --accent-secondary: #60A5FA;
+            --accent-tertiary: #93C5FD;
+            --glow-primary: 0 0 40px rgba(167, 139, 250, 0.5);
+            --glow-secondary: 0 0 40px rgba(96, 165, 250, 0.5);
+        }
+        
+        /* ============================================
+           SUNSET Theme - Orange → Pink
+           ============================================ */
+        [data-theme="sunset"] {
+            --gradient-primary: linear-gradient(90deg, #FB923C 0%, #F472B6 100%);
+            --gradient-secondary: linear-gradient(135deg, #FB923C 0%, #FDBA74 25%, #FCA5A5 50%, #F9A8D4 75%, #F472B6 100%);
+            --accent-primary: #FB923C;
+            --accent-secondary: #F472B6;
+            --accent-tertiary: #FCA5A5;
+            --glow-primary: 0 0 40px rgba(251, 146, 60, 0.5);
+            --glow-secondary: 0 0 40px rgba(244, 114, 182, 0.5);
+        }
+        
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.5s var(--ease-smooth);
+        }
+        
+        /* ============================================
+           ANIMATED BACKGROUND
+           ============================================ */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            overflow: hidden;
+        }
+        
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border-subtle) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 30s linear infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+        
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            top: -300px;
+            left: -300px;
+        }
+        
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+            bottom: -250px;
+            right: -250px;
+            animation-delay: 5s;
+        }
+        
+        .orb-3 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(80px, -80px) scale(1.2); }
+            66% { transform: translate(-50px, 70px) scale(0.9); }
+        }
+        
+        /* ============================================
+           SCROLLBAR STYLING
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            border: 2px solid var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gradient-hover);
+        }
+        
+        /* ============================================
+           MAIN HEADER / NAVBAR
+           ============================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--spacing-xl);
+            z-index: var(--z-fixed);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .main-header.scrolled {
+            height: 60px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .header-left,
+        .header-center,
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            flex: 1;
+        }
+        
+        .header-center {
+            justify-content: center;
+        }
+        
+        .header-right {
+            justify-content: flex-end;
+        }
+        
+        /* ============================================
+           BACK BUTTON
+           ============================================ */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-smooth);
+            z-index: -1;
+        }
+        
+        .btn-back:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(-4px);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .btn-back:hover::before {
+            opacity: 0.15;
+        }
+        
+        .btn-back-icon {
+            font-size: 18px;
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .btn-back:hover .btn-back-icon {
+            animation: arrowBounce 0.6s ease-in-out infinite;
+        }
+        
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateX(-4px); }
+            50% { transform: translateX(-8px); }
+        }
+        
+        /* ============================================
+           LOGO
+           ============================================ */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+        }
+        
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .logo-text {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            font-family: var(--font-display);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* ============================================
+           PAGE TITLE
+           ============================================ */
+        .page-title-header {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            position: relative;
+        }
+        
+        .page-title-header::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+        
+        /* ============================================
+           THEME SWITCHER
+           ============================================ */
+        .theme-switcher {
+            display: flex;
+            gap: var(--spacing-xs);
+            background: var(--bg-card);
+            padding: 4px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+        
+        .theme-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+        }
+        
+        .theme-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
+            transition: border-color var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .theme-btn.active::before {
+            border-color: var(--text-primary);
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .theme-btn-nexus {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+        }
+        
+        .theme-btn-aurora {
+            background: linear-gradient(135deg, #A78BFA, #60A5FA);
+        }
+        
+        .theme-btn-sunset {
+            background: linear-gradient(135deg, #FB923C, #F472B6);
+        }
+        
+        /* ============================================
+           NOTIFICATION ICON
+           ============================================ */
+        .notification-wrapper {
+            position: relative;
+        }
+        
+        .notification-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 20px;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .notification-icon:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            transform: scale(1.05);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            background: var(--error);
+            border: 2px solid var(--bg-primary);
+            border-radius: var(--radius-full);
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulseBadge 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* ============================================
+           PROFILE DROPDOWN
+           ============================================ */
+        .profile-container {
+            position: relative;
+        }
+        
+        .profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 6px 12px 6px 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .profile-trigger:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            transform: translateY(-2px);
+        }
+        
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+        
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            max-width: 120px;
+        }
+        
+        .profile-name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .profile-role {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .profile-container.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: 280px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            z-index: var(--z-dropdown);
+            overflow: hidden;
+        }
+        
+        .profile-container.open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-header {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .dropdown-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .dropdown-user-info {
+            flex: 1;
+        }
+        
+        .dropdown-user-name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .dropdown-user-email {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .dropdown-section {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            position: relative;
+        }
+        
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transform: scaleY(0);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .dropdown-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            padding-left: calc(var(--spacing-lg) + 8px);
+        }
+        
+        .dropdown-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .dropdown-item-icon {
+            font-size: 18px;
+            width: 24px;
+        }
+        
+        .dropdown-item.logout {
+            color: var(--error);
+        }
+        
+        .dropdown-item.logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        /* ============================================
+           MAIN CONTENT CONTAINER
+           ============================================ */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+            padding: var(--spacing-2xl) var(--spacing-xl);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ============================================
+           PORTFOLIO OVERVIEW SECTION
+           ============================================ */
+        .portfolio-section {
+            max-width: 1400px;
+            margin: 0 auto var(--spacing-3xl);
+        }
+        
+        /* Hero Stats Cards */
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .hero-stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .hero-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0.5;
+        }
+        
+        .hero-stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl), var(--glow-primary);
+            border-color: var(--accent-primary);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+        
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 700;
+        }
+        
+        .stat-trend.up {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--profit-light);
+        }
+        
+        .stat-trend.down {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--loss-light);
+        }
+        
+        .stat-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-value {
+            font-size: var(--text-4xl);
+            font-weight: 900;
+            font-family: var(--font-display);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-subtext {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        /* Portfolio Distribution Chart */
+        .portfolio-distribution-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .card-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .card-action-btn {
+            padding: 8px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .card-action-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+        
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-2xl);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+        
+        .distribution-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .distribution-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .distribution-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .distribution-color {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+        }
+        
+        .distribution-info {
+            flex: 1;
+        }
+        
+        .distribution-name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .distribution-amount {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .distribution-percentage {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Holdings Table */
+        .holdings-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+            overflow-x: auto;
+        }
+        
+        .holdings-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        .holdings-table thead {
+            background: var(--bg-elevated);
+        }
+        
+        .holdings-table th {
+            padding: var(--spacing-lg);
+            text-align: left;
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        
+        .holdings-table td {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        
+        .holdings-table tbody tr {
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .holdings-table tbody tr:hover {
+            background: var(--bg-elevated);
+        }
+        
+        .asset-cell {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .asset-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .asset-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .asset-symbol {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+        
+        .profit-cell {
+            color: var(--profit-light);
+            font-weight: 700;
+        }
+        
+        .loss-cell {
+            color: var(--loss-light);
+            font-weight: 700;
+        }
+        
+        .action-cell {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .action-btn {
+            padding: 6px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .action-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .main-header {
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .logo-text {
+                display: none;
+            }
+            
+            .distribution-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 0 var(--spacing-md);
+                height: 60px;
+            }
+            
+            .page-title-header {
+                font-size: var(--text-base);
+            }
+            
+            .profile-info {
+                display: none;
+            }
+            
+            .dropdown-arrow {
+                display: none;
+            }
+            
+            .theme-switcher {
+                display: none;
+            }
+            
+            .main-content {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+            
+            .hero-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .holdings-card {
+                overflow-x: scroll;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .btn-back-text {
+                display: none;
+            }
+            
+            .stat-value {
+                font-size: var(--text-3xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="page-background">
+        <div class="bg-grid"></div>
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header" id="mainHeader">
+        <!-- Left Section -->
+        <div class="header-left">
+            <button class="btn-back" id="backButton">
+                <span class="btn-back-icon">←</span>
+                <span class="btn-back-text">Back</span>
+            </button>
+            
+            <div class="logo-container" onclick="window.location.href='dashboard.html'">
+                <div class="logo-icon">💰</div>
+                <div class="logo-text">FinSavvy<span style="color: var(--text-tertiary); font-size: var(--text-xs);">.AI</span></div>
+            </div>
+        </div>
+        
+        <!-- Center Section -->
+        <div class="header-center">
+            <h1 class="page-title-header">📊 Investment Hub</h1>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="header-right">
+            <!-- Theme Switcher -->
+            <div class="theme-switcher">
+                <button class="theme-btn theme-btn-nexus active" data-theme="nexus"></button>
+                <button class="theme-btn theme-btn-aurora" data-theme="aurora"></button>
+                <button class="theme-btn theme-btn-sunset" data-theme="sunset"></button>
+            </div>
+            
+            <!-- Notification Icon -->
+            <div class="notification-wrapper">
+                <button class="notification-icon" id="notificationButton">
+                    <span>🔔</span>
+                    <span class="notification-badge">4</span>
+                </button>
+            </div>
+            
+            <!-- Profile Dropdown -->
+            <div class="profile-container" id="profileContainer">
+                <button class="profile-trigger" id="profileTrigger">
+                    <div class="profile-avatar">A</div>
+                    <div class="profile-info">
+                        <div class="profile-name">Ankit</div>
+                        <div class="profile-role">Investor</div>
+                    </div>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-header">
+                        <div class="dropdown-avatar">A</div>
+                        <div class="dropdown-user-info">
+                            <div class="dropdown-user-name">Ankit Kumar</div>
+                            <div class="dropdown-user-email">ankit@finsavvy.ai</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="dashboard.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">🏠</span>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="profile.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">👤</span>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="investment-hub.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">📊</span>
+                            <span>Investment Hub</span>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                        <a href="help.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">❓</span>
+                            <span>Help</span>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <a href="#" class="dropdown-item logout" id="logoutButton">
+                            <span class="dropdown-item-icon">🚪</span>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Portfolio Overview Section -->
+        <section class="portfolio-section">
+            <!-- Hero Stats Grid -->
+            <div class="hero-stats-grid">
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">💼</div>
+                        <span class="stat-trend up">↑ 12.5%</span>
+                    </div>
+                    <div class="stat-label">Total Portfolio Value</div>
+                    <div class="stat-value">₹8,45,230</div>
+                    <div class="stat-subtext">+₹94,280 this month</div>
+                </div>
+                
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">📈</div>
+                        <span class="stat-trend up">↑ ₹56,340</span>
+                    </div>
+                    <div class="stat-label">Total Gains</div>
+                    <div class="stat-value">₹1,23,450</div>
+                    <div class="stat-subtext">15.2% returns</div>
+                </div>
+                
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">💰</div>
+                        <span class="stat-trend down">↓ 2.3%</span>
+                    </div>
+                    <div class="stat-label">Invested Amount</div>
+                    <div class="stat-value">₹7,21,780</div>
+                    <div class="stat-subtext">Across 24 assets</div>
+                </div>
+                
+                <div class="hero-stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">🎯</div>
+                        <span class="stat-trend up">↑ 8.4%</span>
+                    </div>
+                    <div class="stat-label">Today's Change</div>
+                    <div class="stat-value">+₹6,340</div>
+                    <div class="stat-subtext">Market open</div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Distribution -->
+            <div class="portfolio-distribution-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>🍕</span>
+                        Portfolio Distribution
+                    </h2>
+                    <div class="card-actions">
+                        <button class="card-action-btn">View All</button>
+                        <button class="card-action-btn">Rebalance</button>
+                    </div>
+                </div>
+                
+                <div class="distribution-grid">
+                    <div class="chart-container">
+                        <canvas id="portfolioDistributionChart"></canvas>
+                    </div>
+                    
+                    <div class="distribution-list">
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #FF6B6B;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">Stocks</div>
+                                <div class="distribution-amount">₹3,38,092</div>
+                            </div>
+                            <div class="distribution-percentage">40%</div>
+                        </div>
+                        
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #4ECDC4;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">Mutual Funds</div>
+                                <div class="distribution-amount">₹2,53,569</div>
+                            </div>
+                            <div class="distribution-percentage">30%</div>
+                        </div>
+                        
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #95E1D3;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">ETFs</div>
+                                <div class="distribution-amount">₹1,69,046</div>
+                            </div>
+                            <div class="distribution-percentage">20%</div>
+                        </div>
+                        
+                        <div class="distribution-item">
+                            <div class="distribution-color" style="background: #FFC93C;"></div>
+                            <div class="distribution-info">
+                                <div class="distribution-name">Crypto</div>
+                                <div class="distribution-amount">₹84,523</div>
+                            </div>
+                            <div class="distribution-percentage">10%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Holdings Table -->
+            <div class="holdings-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>📋</span>
+                        My Holdings
+                    </h2>
+                    <div class="card-actions">
+                        <button class="card-action-btn">Add Investment</button>
+                        <button class="card-action-btn">Export</button>
+                    </div>
+                </div>
+                
+                <table class="holdings-table">
+                    <thead>
+                        <tr>
+                            <th>Asset</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Avg Price</th>
+                            <th>Current Price</th>
+                            <th>Invested</th>
+                            <th>Current Value</th>
+                            <th>Gain/Loss</th>
+                            <th>Returns</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">R</div>
+                                    <div>
+                                        <div class="asset-name">Reliance Industries</div>
+                                        <div class="asset-symbol">NSE: RELIANCE</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Stock</td>
+                            <td>50</td>
+                            <td>₹2,450</td>
+                            <td>₹2,680</td>
+                            <td>₹1,22,500</td>
+                            <td>₹1,34,000</td>
+                            <td class="profit-cell">+₹11,500</td>
+                            <td class="profit-cell">+9.4%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">T</div>
+                                    <div>
+                                        <div class="asset-name">Tata Consultancy Services</div>
+                                        <div class="asset-symbol">NSE: TCS</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Stock</td>
+                            <td>30</td>
+                            <td>₹3,280</td>
+                            <td>₹3,450</td>
+                            <td>₹98,400</td>
+                            <td>₹1,03,500</td>
+                            <td class="profit-cell">+₹5,100</td>
+                            <td class="profit-cell">+5.2%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">I</div>
+                                    <div>
+                                        <div class="asset-name">ICICI Pru Bluechip Fund</div>
+                                        <div class="asset-symbol">Mutual Fund</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Mutual Fund</td>
+                            <td>2,500 units</td>
+                            <td>₹68</td>
+                            <td>₹75</td>
+                            <td>₹1,70,000</td>
+                            <td>₹1,87,500</td>
+                            <td class="profit-cell">+₹17,500</td>
+                            <td class="profit-cell">+10.3%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">SIP</button>
+                                    <button class="action-btn">Redeem</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">N</div>
+                                    <div>
+                                        <div class="asset-name">Nifty 50 ETF</div>
+                                        <div class="asset-symbol">NSE: NIFTYBEES</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>ETF</td>
+                            <td>100</td>
+                            <td>₹210</td>
+                            <td>₹225</td>
+                            <td>₹21,000</td>
+                            <td>₹22,500</td>
+                            <td class="profit-cell">+₹1,500</td>
+                            <td class="profit-cell">+7.1%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="asset-cell">
+                                    <div class="asset-icon">₿</div>
+                                    <div>
+                                        <div class="asset-name">Bitcoin</div>
+                                        <div class="asset-symbol">BTC/INR</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Crypto</td>
+                            <td>0.05 BTC</td>
+                            <td>₹32,50,000</td>
+                            <td>₹35,20,000</td>
+                            <td>₹1,62,500</td>
+                            <td>₹1,76,000</td>
+                            <td class="profit-cell">+₹13,500</td>
+                            <td class="profit-cell">+8.3%</td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn">Buy</button>
+                                    <button class="action-btn">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    <style>
+        /* ============================================
+           PART 3/3: EXPENSE ANALYZER & INTEGRATIONS
+           SPENDING CATEGORIZATION | HEATMAPS
+           BEHAVIORAL ANALYSIS | CHATBOT
+           ============================================ */
+        
+        /* ============================================
+           EXPENSE ANALYZER SECTION
+           ============================================ */
+        .expense-analyzer-section {
+            max-width: 1400px;
+            margin: 0 auto var(--spacing-3xl);
+        }
+        
+        .expense-header-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .expense-header-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 50%);
+            opacity: 0.08;
+            animation: rotateGlow 20s linear infinite;
+        }
+        
+        .expense-header-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .expense-icon-large {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            box-shadow: var(--shadow-lg), var(--glow-primary);
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .expense-header-info {
+            flex: 1;
+        }
+        
+        .expense-header-title {
+            font-size: var(--text-3xl);
+            font-weight: 800;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .expense-header-subtitle {
+            font-size: var(--text-base);
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+        
+        .expense-stats-mini {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .expense-stat-mini {
+            text-align: right;
+        }
+        
+        .expense-stat-value-mini {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .expense-stat-label-mini {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+        
+        /* Category Breakdown */
+        .category-breakdown-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .category-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-primary);
+            transform: scaleY(0);
+            transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .category-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .category-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .category-percentage {
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .category-name {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .category-amount {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .category-trend {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .category-trend.up {
+            color: var(--loss-light);
+        }
+        
+        .category-trend.down {
+            color: var(--profit-light);
+        }
+        
+        /* Spending Heatmap */
+        .heatmap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .heatmap-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .heatmap-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .heatmap-tab {
+            padding: 8px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .heatmap-tab.active,
+        .heatmap-tab:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+        
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: auto repeat(7, 1fr);
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .heatmap-day-label {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: var(--spacing-sm);
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+        
+        .heatmap-cell {
+            aspect-ratio: 1;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+        }
+        
+        .heatmap-cell:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .heatmap-cell.low {
+            background: rgba(16, 185, 129, 0.3);
+            border-color: var(--success);
+        }
+        
+        .heatmap-cell.medium {
+            background: rgba(245, 158, 11, 0.3);
+            border-color: var(--warning);
+        }
+        
+        .heatmap-cell.high {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: var(--error);
+        }
+        
+        /* Behavioral Analysis */
+        .behavioral-analysis-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .behavioral-insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .behavioral-insight {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            border-left: 4px solid var(--accent-primary);
+        }
+        
+        .behavioral-insight-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .behavioral-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .behavioral-badge {
+            padding: 4px 10px;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning-light);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .behavioral-insight-title {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .behavioral-insight-description {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+        
+        /* Budget Recommendations */
+        .budget-recommendations-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .recommendation-list {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+        
+        .recommendation-item {
+            display: flex;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-xl);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .recommendation-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .recommendation-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        
+        .recommendation-content {
+            flex: 1;
+        }
+        
+        .recommendation-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .recommendation-description {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .recommendation-impact {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success-light);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 700;
+        }
+        
+        /* Chatbot Widget */
+        .chatbot-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl), var(--glow-primary);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            z-index: var(--z-popover);
+            animation: fabPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes fabPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .chatbot-fab:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-2xl), 0 0 60px rgba(255, 107, 107, 0.7);
+        }
+        
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 420px;
+            height: 640px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: var(--z-popover);
+            animation: chatbotSlideIn 0.3s var(--ease-smooth);
+        }
+        
+        @keyframes chatbotSlideIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .chatbot-window.open {
+            display: flex;
+        }
+        
+        .chatbot-header {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .chatbot-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .chatbot-info {
+            flex: 1;
+        }
+        
+        .chatbot-name {
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .chatbot-status {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .chatbot-close {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+        }
+        
+        .chatbot-close:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: var(--spacing-lg);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+        
+        .message-group {
+            display: flex;
+            gap: var(--spacing-sm);
+            animation: messageSlideIn 0.3s var(--ease-smooth);
+        }
+        
+        @keyframes messageSlideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message-group.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .message-bubble {
+            max-width: 75%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .message-group.user .message-bubble {
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+        }
+        
+        .chatbot-input-container {
+            padding: var(--spacing-lg);
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .chatbot-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+            outline: none;
+        }
+        
+        .chatbot-send-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .expense-header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .expense-icon-large {
+                margin: 0 auto;
+            }
+            
+            .expense-stats-mini {
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .chatbot-window {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+            }
+            
+            .chatbot-fab {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
+            }
+        }
+    </style>
+
+        <!-- Expense Analyzer Section -->
+        <section class="expense-analyzer-section">
+            <!-- Expense Header -->
+            <div class="expense-header-card">
+                <div class="expense-header-content">
+                    <div class="expense-icon-large">💸</div>
+                    <div class="expense-header-info">
+                        <h2 class="expense-header-title">Expense Analyzer</h2>
+                        <p class="expense-header-subtitle">
+                            AI-powered insights into your spending patterns, emotional triggers, and personalized budget recommendations
+                        </p>
+                    </div>
+                    <div class="expense-stats-mini">
+                        <div class="expense-stat-mini">
+                            <div class="expense-stat-value-mini">₹45,680</div>
+                            <div class="expense-stat-label-mini">This Month</div>
+                        </div>
+                        <div class="expense-stat-mini">
+                            <div class="expense-stat-value-mini">+12%</div>
+                            <div class="expense-stat-label-mini">vs Last Month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Breakdown -->
+            <div class="category-breakdown-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>📊</span>
+                        Spending by Category
+                    </h2>
+                </div>
+                
+                <div class="category-grid">
+                    <div class="category-item">
+                        <div class="category-header">
+                            <div class="category-icon" style="background: rgba(255, 107, 107, 0.2); color: #FF6B6B;">🍕</div>
+                            <span class="category-percentage">28%</span>
+                        </div>
+                        <h3 class="category-name">Food & Dining</h3>
+                        <div class="category-amount">₹12,790</div>
+                        <div class="category-trend up">↑ +15% vs last month</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-header">
+                            <div class="category-icon" style="background: rgba(78, 205, 196, 0.2); color: #4ECDC4;">🚗</div>
+                            <span class="category-percentage">22%</span>
+                        </div>
+                        <h3 class="category-name">Transportation</h3>
+                        <div class="category-amount">₹10,050</div>
+                        <div class="category-trend down">↓ -8% vs last month</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-header">
+                            <div class="category-icon" style="background: rgba(149, 225, 211, 0.2); color: #95E1D3;">🛍️</div>
+                            <span class="category-percentage">18%</span>
+                        </div>
+                        <h3 class="category-name">Shopping</h3>
+                        <div class="category-amount">₹8,220</div>
+                        <div class="category-trend up">↑ +22% vs last month</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-header">
+                            <div class="category-icon" style="background: rgba(255, 201, 60, 0.2); color: #FFC93C;">🏠</div>
+                            <span class="category-percentage">15%</span>
+                        </div>
+                        <h3 class="category-name">Bills & Utilities</h3>
+                        <div class="category-amount">₹6,850</div>
+                        <div class="category-trend">No change</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-header">
+                            <div class="category-icon" style="background: rgba(167, 139, 250, 0.2); color: #A78BFA;">🎬</div>
+                            <span class="category-percentage">10%</span>
+                        </div>
+                        <h3 class="category-name">Entertainment</h3>
+                        <div class="category-amount">₹4,570</div>
+                        <div class="category-trend up">↑ +5% vs last month</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-header">
+                            <div class="category-icon" style="background: rgba(96, 165, 250, 0.2); color: #60A5FA;">💊</div>
+                            <span class="category-percentage">7%</span>
+                        </div>
+                        <h3 class="category-name">Healthcare</h3>
+                        <div class="category-amount">₹3,200</div>
+                        <div class="category-trend down">↓ -12% vs last month</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Spending Heatmap -->
+            <div class="heatmap-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>🔥</span>
+                        Spending Heatmap
+                    </h2>
+                    <div class="heatmap-controls">
+                        <div class="heatmap-tabs">
+                            <button class="heatmap-tab active">By Day</button>
+                            <button class="heatmap-tab">By Time</button>
+                            <button class="heatmap-tab">By Merchant</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="heatmap-grid">
+                    <div></div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Mon</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Tue</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Wed</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Thu</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Fri</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Sat</div>
+                    <div style="text-align: center; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 600;">Sun</div>
+                    
+                    <div class="heatmap-day-label">Week 1</div>
+                    <div class="heatmap-cell low">₹800</div>
+                    <div class="heatmap-cell medium">₹1.5K</div>
+                    <div class="heatmap-cell high">₹2.8K</div>
+                    <div class="heatmap-cell low">₹900</div>
+                    <div class="heatmap-cell medium">₹1.6K</div>
+                    <div class="heatmap-cell high">₹2.4K</div>
+                    <div class="heatmap-cell low">₹700</div>
+                    
+                    <div class="heatmap-day-label">Week 2</div>
+                    <div class="heatmap-cell medium">₹1.4K</div>
+                    <div class="heatmap-cell low">₹850</div>
+                    <div class="heatmap-cell low">₹920</div>
+                    <div class="heatmap-cell medium">₹1.3K</div>
+                    <div class="heatmap-cell high">₹2.1K</div>
+                    <div class="heatmap-cell medium">₹1.7K</div>
+                    <div class="heatmap-cell low">₹780</div>
+                </div>
+            </div>
+            
+            <!-- Behavioral Analysis -->
+            <div class="behavioral-analysis-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>🧠</span>
+                        AI Behavioral Analysis
+                    </h2>
+                </div>
+                
+                <div class="behavioral-insights-grid">
+                    <div class="behavioral-insight">
+                        <div class="behavioral-insight-header">
+                            <div class="behavioral-icon">⚠️</div>
+                            <span class="behavioral-badge">Alert</span>
+                        </div>
+                        <h3 class="behavioral-insight-title">Weekend Overspending</h3>
+                        <p class="behavioral-insight-description">
+                            You spend 45% more on weekends. Consider setting weekend budgets to control impulse purchases.
+                        </p>
+                    </div>
+                    
+                    <div class="behavioral-insight">
+                        <div class="behavioral-insight-header">
+                            <div class="behavioral-icon">🕐</div>
+                            <span class="behavioral-badge">Pattern</span>
+                        </div>
+                        <h3 class="behavioral-insight-title">Late Night Purchases</h3>
+                        <p class="behavioral-insight-description">
+                            Most food delivery orders happen between 9-11 PM when you're tired. Try meal prepping.
+                        </p>
+                    </div>
+                    
+                    <div class="behavioral-insight">
+                        <div class="behavioral-insight-header">
+                            <div class="behavioral-icon">💳</div>
+                            <span class="behavioral-badge">Insight</span>
+                        </div>
+                        <h3 class="behavioral-insight-title">Merchant Concentration</h3>
+                        <p class="behavioral-insight-description">
+                            60% of food spending is on 3 merchants. Explore alternatives for better deals and variety.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Budget Recommendations -->
+            <div class="budget-recommendations-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span>💡</span>
+                        Personalized Budget Recommendations
+                    </h2>
+                </div>
+                
+                <div class="recommendation-list">
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon">🍳</div>
+                        <div class="recommendation-content">
+                            <h3 class="recommendation-title">Reduce Food Delivery by 30%</h3>
+                            <p class="recommendation-description">
+                                Cook 3 meals at home per week instead of ordering. This simple change can save you significant money while being healthier.
+                            </p>
+                            <span class="recommendation-impact">💰 Save ₹3,800/month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon">🚌</div>
+                        <div class="recommendation-content">
+                            <h3 class="recommendation-title">Optimize Transportation</h3>
+                            <p class="recommendation-description">
+                                Use public transport for 40% of trips or carpool. Current cab usage is 60% above optimal levels.
+                            </p>
+                            <span class="recommendation-impact">💰 Save ₹2,400/month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon">🎯</div>
+                        <div class="recommendation-content">
+                            <h3 class="recommendation-title">Set Shopping Limits</h3>
+                            <p class="recommendation-description">
+                                Limit non-essential shopping to ₹5,000/month. Use the 24-hour rule before making purchases over ₹1,000.
+                            </p>
+                            <span class="recommendation-impact">💰 Save ₹3,200/month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-fab" id="chatbotFAB">🤖</div>
+    
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">🤖</div>
+            <div class="chatbot-info">
+                <div class="chatbot-name">FinSavvy AI Assistant</div>
+                <div class="chatbot-status">Always here to help</div>
+            </div>
+            <button class="chatbot-close" onclick="closeChatbot()">✕</button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message-group">
+                <div class="message-avatar">🤖</div>
+                <div class="message-bubble">
+                    Hi! I can help you with investment insights, portfolio analysis, and expense tracking. What would you like to know?
+                </div>
+            </div>
+        </div>
+        
+        <div class="chatbot-input-container">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask me anything..." onkeypress="handleChatKeyPress(event)">
+            <button class="chatbot-send-btn" onclick="sendChatMessage()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================
+           JAVASCRIPT ENGINE & CHART INITIALIZATION
+           ============================================ */
+        
+        // Global State
+        const InvestmentHubState = {
+            portfolioValue: 845230,
+            totalGains: 123450,
+            investedAmount: 721780,
+            todayChange: 6340,
+            emotionalSpending: 45680,
+            normalSpending: 32450
+        };
+        
+        // Initialize Everything
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventListeners();
+            initializeThemeSwitcher();
+            initializeScrollEffects();
+            initializeCharts();
+            initializeSimulation();
+            
+            console.log('✅ Investment Hub Initialized');
+        });
+        
+        // Event Listeners
+        function initializeEventListeners() {
+            document.getElementById('backButton')?.addEventListener('click', function() {
+                if (confirm('Go back to dashboard?')) {
+                    window.location.href = 'dashboard.html';
+                }
+            });
+            
+            const profileContainer = document.getElementById('profileContainer');
+            const profileTrigger = document.getElementById('profileTrigger');
+            
+            profileTrigger?.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileContainer.classList.toggle('open');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!profileContainer?.contains(e.target)) {
+                    profileContainer?.classList.remove('open');
+                }
+            });
+            
+            document.getElementById('notificationButton')?.addEventListener('click', function() {
+                window.location.href = 'notifications.html';
+            });
+            
+            document.getElementById('logoutButton')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.clear();
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+        
+        // Theme Switcher
+        function initializeThemeSwitcher() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            themeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    themeButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem('selectedTheme', theme);
+                    updateChartColors();
+                });
+            });
+            
+            const savedTheme = localStorage.getItem('selectedTheme') || 'nexus';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelector(`[data-theme="${savedTheme}"]`)?.classList.add('active');
+        }
+        
+        // Scroll Effects
+        function initializeScrollEffects() {
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header?.classList.add('scrolled');
+                } else {
+                    header?.classList.remove('scrolled');
+                }
+            });
+        }
+        
+        // Charts Initialization
+        let portfolioDistributionChart = null;
+        let portfolioPerformanceChart = null;
+        let assetAllocationChart = null;
+        
+        function initializeCharts() {
+            initPortfolioDistributionChart();
+            initPortfolioPerformanceChart();
+            initAssetAllocationChart();
+        }
+        
+        function initPortfolioDistributionChart() {
+            const ctx = document.getElementById('portfolioDistributionChart');
+            if (!ctx) return;
+            
+            portfolioDistributionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Stocks', 'Mutual Funds', 'ETFs', 'Crypto'],
+                    datasets: [{
+                        data: [40, 30, 20, 10],
+                        backgroundColor: ['#FF6B6B', '#4ECDC4', '#95E1D3', '#FFC93C'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+        
+        function initPortfolioPerformanceChart() {
+            const ctx = document.getElementById('portfolioPerformanceChart');
+            if (!ctx) return;
+            
+            portfolioPerformanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Portfolio Value',
+                        data: [650000, 680000, 720000, 740000, 780000, 800000, 790000, 810000, 825000, 840000, 850000, 845230],
+                        borderColor: '#FF6B6B',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + (value / 1000) + 'K';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function initAssetAllocationChart() {
+            const ctx = document.getElementById('assetAllocationChart');
+            if (!ctx) return;
+            
+            assetAllocationChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Equity', 'Debt', 'Gold', 'Cash'],
+                    datasets: [
+                        {
+                            label: 'Current',
+                            data: [65, 20, 10, 5],
+                            backgroundColor: '#FF6B6B'
+                        },
+                        {
+                            label: 'Ideal',
+                            data: [60, 25, 10, 5],
+                            backgroundColor: '#4ECDC4'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, position: 'top' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateChartColors() {
+            if (portfolioDistributionChart) portfolioDistributionChart.destroy();
+            if (portfolioPerformanceChart) portfolioPerformanceChart.destroy();
+            if (assetAllocationChart) assetAllocationChart.destroy();
+            initializeCharts();
+        }
+        
+        // Simulation Functions
+        function initializeSimulation() {
+            const periodSlider = document.getElementById('investmentPeriod');
+            const returnSlider = document.getElementById('expectedReturn');
+            
+            periodSlider?.addEventListener('input', function() {
+                document.getElementById('periodDisplay').textContent = this.value + ' Years';
+            });
+            
+            returnSlider?.addEventListener('input', function() {
+                document.getElementById('returnDisplay').textContent = this.value + '%';
+            });
+        }
+        
+        function runSimulation() {
+            const monthly = parseFloat(document.getElementById('monthlyInvestment').value) || 10000;
+            const years = parseFloat(document.getElementById('investmentPeriod').value) || 10;
+            const returnRate = parseFloat(document.getElementById('expectedReturn').value) || 12;
+            
+            const months = years * 12;
+            const monthlyRate = returnRate / 100 / 12;
+            
+            const futureValue = monthly * (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate));
+            const totalInvested = monthly * months;
+            const returns = futureValue - totalInvested;
+            
+            document.getElementById('projectedWealth').textContent = '₹' + formatNumber(Math.round(futureValue));
+            
+            alert(`💰 Simulation Results\n\n` +
+                  `Future Value: ₹${formatNumber(Math.round(futureValue))}\n` +
+                  `Total Invested: ₹${formatNumber(totalInvested)}\n` +
+                  `Returns: ₹${formatNumber(Math.round(returns))}\n` +
+                  `Return %: ${((returns/totalInvested) * 100).toFixed(2)}%`);
+        }
+        
+        // Chatbot Functions
+        document.getElementById('chatbotFAB')?.addEventListener('click', function() {
+            document.getElementById('chatbotWindow').classList.toggle('open');
+        });
+        
+        function closeChatbot() {
+            document.getElementById('chatbotWindow').classList.remove('open');
+        }
+        
+        function sendChatMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            setTimeout(() => {
+                const response = generateAIResponse(message);
+                addChatMessage(response, 'bot');
+            }, 1000);
+        }
+        
+        function addChatMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const messageGroup = document.createElement('div');
+            messageGroup.className = 'message-group' + (sender === 'user' ? ' user' : '');
+            
+            messageGroup.innerHTML = `
+                <div class="message-avatar">${sender === 'user' ? '👤' : '🤖'}</div>
+                <div class="message-bubble">${text}</div>
+            `;
+            
+            messagesContainer.appendChild(messageGroup);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function generateAIResponse(message) {
+            const lower = message.toLowerCase();
+            
+            if (lower.includes('portfolio') || lower.includes('investment')) {
+                return "Your portfolio is performing well with ₹8.45L total value and 15.2% returns. Consider rebalancing to reduce sector concentration risk in IT and Banking.";
+            }
+            
+            if (lower.includes('risk') || lower.includes('volatility')) {
+                return "Your risk score is 6.5/10 (Moderate). Current volatility is 18.4%. Your Sharpe ratio of 1.85 indicates good risk-adjusted returns.";
+            }
+            
+            if (lower.includes('expense') || lower.includes('spending')) {
+                return "You spent ₹45,680 this month, up 12% from last month. Food & Dining is your top category at 28%. Try cooking at home 3x/week to save ₹3,800/month.";
+            }
+            
+            if (lower.includes('tax') || lower.includes('save')) {
+                return "You can save ₹57,200 in taxes! Invest ₹1.5L in ELSS (save ₹31,200), ₹50K in NPS (save ₹15,600), and optimize losses (save ₹10,400).";
+            }
+            
+            return "I can help with portfolio analysis, investment goals, expense tracking, and tax optimization. What specific area would you like to explore?";
+        }
+        
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+        
+        // Utility Functions
+        function formatNumber(num) {
+            return num.toLocaleString('en-IN');
+        }
+        
+        console.log('%c💰 Investment Hub Ready', 'font-size: 20px; font-weight: bold; color: #FF6B6B;');
+    </script>
+</body>
+</html>
